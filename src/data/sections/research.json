@@ -1,0 +1,23 @@
+{
+  "heading": "Research & Publications",
+  "papers": [
+    {
+      "title": "Deep Learning Based ECG Signal Classification",
+      "conference": "IEEE International Conference",
+      "year": "2024",
+      "description": "Proposed a CNN-based framework for automatic ECG signal classification to detect cardiac abnormalities with high accuracy."
+    },
+    {
+      "title": "Respiratory Sound Analysis using AI",
+      "conference": "Springer Journal",
+      "year": "2024",
+      "description": "Designed a deep learning model to classify respiratory sounds for early detection of lung diseases."
+    },
+    {
+      "title": "Crop Disease Detection using Computer Vision",
+      "conference": "Elsevier Journal",
+      "year": "2023",
+      "description": "Developed a CNN-based model to detect crop diseases using leaf images to support smart agriculture."
+    }
+  ]
+}

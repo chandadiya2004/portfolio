@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  cursor: none;
+}
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Professional font rendering */
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+/* Smooth transitions globally */
+* {
+  transition: background-color 0.25s ease, 
+              border 0.25s ease, 
+              transform 0.25s ease, 
+              box-shadow 0.25s ease;
+}
+
+/* Custom scrollbar (desktop only) */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #9333ea, #7c3aed);
+    border-radius: 10px;
+  }
+}
+
+/* Touch device optimization */
+@media (max-width: 1023px) {
+  button, a, input, textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ================================ */
+/*      PREMIUM CUSTOM CURSOR      */
+/* ================================ */
+
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #a855f7;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transition: transform 0.08s linear;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #a855f7;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+/* Hide custom cursor on mobile */
+@media (max-width: 1024px) {
+  #cursor,
+  #cursor-dot {
+    display: none;
+  }
+}

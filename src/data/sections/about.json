@@ -1,0 +1,36 @@
+{
+  "heading": "About Me",
+  "summary": "I am a B.Tech Computer Science Engineering (AI & ML) undergraduate admitted in 2023, with a strong focus on Deep Learning, Large Language Models (LLMs), Generative AI, and scalable full-stack systems. I specialize in architecting intelligent, high-performance applications by integrating state-of-the-art machine learning models with modern cloud-native web technologies. My goal is to build real-world AI solutions that are robust, efficient, and impactful.",
+  "highlights": [
+    "Deep Learning & Neural Network Architectures",
+    "Large Language Models (LLMs) & Generative AI",
+    "End-to-End AI System Development",
+    "Scalable Full-Stack Engineering",
+    "Research-Oriented Problem Solving"
+  ],
+  "timeline": [
+    {
+      "year": "2023 – Present",
+      "title": "B.Tech CSE (AI & ML) — Undergraduate",
+      "description": "Pursuing undergraduate studies with specialization in Artificial Intelligence and Machine Learning, focusing on deep learning, neural networks, computer vision, NLP, generative AI, and advanced software engineering practices."
+    },
+    {
+      "year": "2024 – Present",
+      "title": "AI Research & Advanced Project Development",
+      "description": "Actively working on research-driven projects in ECG signal processing, respiratory sound analysis, computer vision, generative AI pipelines, and large-scale deep learning systems."
+    },
+    {
+      "year": "2025 – Present",
+      "title": "Production-Grade AI Systems & Full-Stack Development",
+      "description": "Designing and building scalable AI-powered web platforms using React, FastAPI, cloud services, and optimized deployment pipelines, emphasizing performance, reliability, and real-world impact."
+    }
+  ],
+  "mission": "To engineer intelligent systems that bridge academic research and real-world deployment, delivering scalable, efficient, and impactful AI-driven solutions.",
+  "values": [
+    "Innovation",
+    "Research Excellence",
+    "System Scalability",
+    "Clean Architecture",
+    "Continuous Learning"
+  ]
+}

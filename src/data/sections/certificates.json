@@ -1,0 +1,29 @@
+{
+  "heading": "Certifications",
+  "certificates": [
+    {
+      "title": "Deep Learning Specialization",
+      "platform": "Coursera",
+      "issuer": "DeepLearning.AI",
+      "year": "2024"
+    },
+    {
+      "title": "Machine Learning with Python",
+      "platform": "IBM",
+      "issuer": "Coursera",
+      "year": "2023"
+    },
+    {
+      "title": "Generative AI Fundamentals",
+      "platform": "Google Cloud",
+      "issuer": "Google",
+      "year": "2024"
+    },
+    {
+      "title": "Full Stack Web Development",
+      "platform": "Udemy",
+      "issuer": "Udemy",
+      "year": "2023"
+    }
+  ]
+}
