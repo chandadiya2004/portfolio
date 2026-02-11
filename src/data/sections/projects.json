@@ -12,30 +12,30 @@
       "title": "Diabetes Prediction System",
       "description": "An AI-powered system that predicts the likelihood of diabetes using patient health metrics, featuring a clean web interface and real-time prediction.",
       "tech": ["Python", "Streamlit", "Scikit-learn"],
-      "github": "",
-      "demo": ""
+      "github": "https://github.com/chandadiya2004/diabetes-prediction",
+      "demo": "https://diabetes-prediction-diya.onrender.com/"
     },
     {
       "title": "Movie Recommendation System",
       "description": "A content-based recommendation engine using cosine similarity to suggest movies based on user preferences and feature similarity.",
       "tech": ["Python", "Streamlit", "Scikit-learn", "Cosine Similarity"],
-      "github": "",
-      "demo": ""
+      "github": "https://github.com/chandadiya2004/movie-recommendation-system",
+      "demo": "https://movie-recommendation-system-diya.streamlit.app/"
     },
 
     {
       "title": "Gold Price Prediction System",
       "description": "Machine learning model that forecasts gold prices using historical financial data with an interactive Streamlit dashboard.",
       "tech": ["Python", "Scikit-learn", "Streamlit"],
-      "github": "",
-      "demo": ""
+      "github": "https://github.com/chandadiya2004/gold-price-prediction",
+      "demo": "https://gold-price-prediction-diya.streamlit.app/"
     },
     {
       "title": "Caesar Cipher Encryption App",
       "description": "A cryptography-based web application that encrypts and decrypts messages using Caesar Cipher logic with a user-friendly interface.",
       "tech": ["Python", "Streamlit"],
-      "github": "",
-      "demo": ""
+      "github": "https://github.com/chandadiya2004/caesar-cipher-app",
+      "demo": "https://caesar-cipher-app-diya.streamlit.app/"
     }
   ]
 }
