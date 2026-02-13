@@ -16,7 +16,7 @@ const Contact = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    emailjs.init("no0vrcYDYm-2-MRJ5");
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
   }, []);
 
   const handleChange = (e) => {
@@ -34,13 +34,16 @@ const Contact = () => {
 
     try {
       const response = await emailjs.send(
-        "service_oplv739",
-        "template_iy8vudy",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_email: data.email,
+        },
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
         }
       );
 
