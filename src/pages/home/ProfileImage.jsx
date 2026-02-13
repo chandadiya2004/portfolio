@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import profile from "../../assets/profile.jpg";
+import profile from "../../assets/profile.jpeg";
 
 export default function ProfileImage() {
   return (
     <motion.div
       className="profile-ring"
-      initial={{ opacity: 0, scale: 0.6, y: 30 }}   // start invisible
+      initial={{ opacity: 1, scale: 0.6, y: 30 }}   // start invisible
       animate={{
-        opacity: 1,
+        opacity: 10,
         scale: [1, 1.05, 1],
         y: [0, -12, 0],
       }}

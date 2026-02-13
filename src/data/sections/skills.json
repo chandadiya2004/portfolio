@@ -3,23 +3,55 @@
   "categories": [
     {
       "title": "Programming Languages",
-      "skills": ["Python", "C", "Java", "JavaScript", "R"]
+      "icon": "💻",
+      "skills": [
+        "Python",
+        "C",
+        "Java",
+        "JavaScript",
+        "R"
+      ]
     },
     {
       "title": "Web Development",
-      "skills": ["HTML", "CSS", "React.js", "Tailwind CSS", "Flask", "FastAPI"]
+      "icon": "🌐",
+      "skills": [
+        "HTML",
+        "CSS",
+        "React.js",
+        "Tailwind CSS",
+        "Flask",
+        "FastAPI"
+      ]
     },
     {
       "title": "AI / ML / Deep Learning",
-      "skills": ["TensorFlow", "Keras", "OpenCV", "Scikit-learn", "LLMs", "Generative AI"]
+      "icon": "🤖",
+      "skills": [
+        "TensorFlow",
+        "Keras",
+        "OpenCV",
+        "Scikit-learn",
+        "LLMs",
+        "Generative AI"
+      ]
     },
     {
       "title": "Databases",
-      "skills": ["MongoDB", "PostgreSQL"]
+      "icon": "🗄️",
+      "skills": [
+        "MongoDB",
+        "PostgreSQL"
+      ]
     },
     {
       "title": "DevOps & Deployment",
-      "skills": ["Vercel", "Render", "AWS"]
+      "icon": "🚀",
+      "skills": [
+        "Vercel",
+        "Render",
+        "AWS"
+      ]
     }
   ]
 }

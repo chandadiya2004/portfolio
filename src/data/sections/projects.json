@@ -1,36 +1,51 @@
 {
-  "heading": "Projects",
+  "heading": "Featured Projects",
   "projects": [
     {
+      "id": 1,
+      "icon": "🎬",
       "title": "Movie Recommendation System",
+      "category": "Machine Learning",
       "description": "A content-based recommendation engine using cosine similarity to suggest movies based on user preferences and feature similarity.",
       "tech": ["Python", "Streamlit", "Scikit-learn", "Cosine Similarity"],
       "github": "https://github.com/chandadiya2004/movie-recommendation-system",
       "demo": "https://movie-recommendation-system-diya.streamlit.app/"
     },
     {
+      "id": 2,
+      "icon": "🏥",
       "title": "Diabetes Prediction System",
+      "category": "Healthcare AI",
       "description": "An AI-powered system that predicts the likelihood of diabetes using patient health metrics, featuring a clean web interface and real-time prediction.",
       "tech": ["Python", "Streamlit", "Scikit-learn"],
       "github": "https://github.com/chandadiya2004/diabetes-prediction",
       "demo": "https://diabetes-prediction-diya.onrender.com/"
     },
-      {
+    {
+      "id": 3,
+      "icon": "🚗",
       "title": "Car Price Prediction System",
+      "category": "Regression Analysis",
       "description": "A machine learning-based web application that predicts car prices using regression models trained on real-world datasets. Provides an interactive UI for instant predictions.",
       "tech": ["Python", "Streamlit", "Scikit-learn"],
       "github": "https://github.com/chandadiya2004/car-price-prediction",
       "demo": "https://car-price-prediction-9md2.onrender.com/"
     },
     {
+      "id": 4,
+      "icon": "💰",
       "title": "Gold Price Prediction System",
+      "category": "Time Series",
       "description": "Machine learning model that forecasts gold prices using historical financial data with an interactive Streamlit dashboard.",
       "tech": ["Python", "Scikit-learn", "Streamlit"],
       "github": "https://github.com/chandadiya2004/gold-price-prediction",
       "demo": "https://gold-price-prediction-diya.streamlit.app/"
     },
     {
+      "id": 5,
+      "icon": "🔐",
       "title": "Caesar Cipher Encryption App",
+      "category": "Cryptography",
       "description": "A cryptography-based web application that encrypts and decrypts messages using Caesar Cipher logic with a user-friendly interface.",
       "tech": ["Python", "Streamlit"],
       "github": "https://github.com/chandadiya2004/caesar-cipher-app",

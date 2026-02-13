@@ -106,9 +106,9 @@ body::before {
   width: 215px;
   height: 215px;
   border-radius: 50%;
-  padding: 4px;
+  padding: 8px;
   background: linear-gradient(270deg, #7c3aed, #ec4899, #06b6d4);
-  background-size: 400% 400%;
+  background-size: 100% 100%;
   animation: ringGlow 6s ease infinite;
 }
 
@@ -117,8 +117,8 @@ body::before {
   height: 100%;
   border-radius: 50%;
   object-fit: contain;
-  background: black;
-  padding: 6px;
+  object-position: center center;
+  background: rgb(255, 255, 255);
 }
 
 /* Gradient ring animation */

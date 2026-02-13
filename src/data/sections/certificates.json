@@ -2,6 +2,14 @@
   "heading": "Certifications",
   "certificates": [
     {
+  "title": "📄 International Conference Presentation",
+  "article": "An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops",
+  "event": "2025 International Conference on Computing and Communications (COMPUTINGCON)",
+  "issuer": "D Y Patil University, Ambi, Pune (IEEE Bombay Section)",
+  "year": "Sep 2025",
+  "description": "Presented my research paper at the 2025 International Conference on Computing and Communications (COMPUTINGCON). This work focuses on applying Explainable Deep Learning techniques for quality assessment in solanaceous crops, enhancing transparency and reliability in AI-driven agricultural solutions. 🌾🤖"
+    },
+    {
       "title": "📜 Certificate of Merit",
       "article": "AI-Driven Smart Waste Management System",
       "issuer": "Anuranan (University Journal)",
