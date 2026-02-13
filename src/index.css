@@ -2,39 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================================ */
+/*            GLOBAL BASE           */
+/* ================================ */
+
 * {
   cursor: none;
 }
 
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Professional font rendering */
 body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #000;
+  background: black;
+  color: white;
   overflow-x: hidden;
 }
 
 /* Smooth transitions globally */
 * {
-  transition: background-color 0.25s ease, 
-              border 0.25s ease, 
-              transform 0.25s ease, 
+  transition: background-color 0.25s ease,
+              border 0.25s ease,
+              transform 0.25s ease,
               box-shadow 0.25s ease;
 }
 
-/* Custom scrollbar (desktop only) */
+/* ================================ */
+/*           HERO SECTION           */
+/* ================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+}
+
+.hero-left {
+  text-align: center;
+}
+
+.hero-left h1 {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 700;
+}
+
+.hero-left h2 {
+  margin-top: 14px;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  color: #cbd5e1;
+}
+
+.hero-left p {
+  margin-top: 16px;
+  color: #94a3b8;
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+/* ================================ */
+/*        PROFILE IMAGE RING        */
+/* ================================ */
+
+.profile-ring {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradient-ring {
+  width: 215px;
+  height: 215px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(270deg, #7c3aed, #ec4899, #06b6d4);
+  background-size: 400% 400%;
+  animation: ringGlow 6s ease infinite;
+}
+
+.gradient-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  background: black;
+  padding: 6px;
+}
+
+/* Gradient ring animation */
+@keyframes ringGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================================ */
+/*         CUSTOM SCROLLBAR         */
+/* ================================ */
+
 @media (min-width: 1024px) {
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #020617;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -43,15 +121,22 @@ body {
   }
 }
 
-/* Touch device optimization */
+/* ================================ */
+/*        TOUCH DEVICE FIXES        */
+/* ================================ */
+
 @media (max-width: 1023px) {
+  * {
+    cursor: auto;
+  }
+
   button, a, input, textarea {
     -webkit-tap-highlight-color: transparent;
   }
 }
 
 /* ================================ */
-/*      PREMIUM CUSTOM CURSOR      */
+/*      PREMIUM CUSTOM CURSOR       */
 /* ================================ */
 
 #cursor {

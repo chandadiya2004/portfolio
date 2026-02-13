@@ -1,48 +1,57 @@
 import { motion } from "framer-motion";
 import heroData from "../../data/sections/hero.json";
-import profile from "../../assets/profile.jpg";
+import ProfileImage from "../../pages/home/ProfileImage";
+import TypingSubtitle from "../../pages/home/TypingSubtitle";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 
 const Hero = () => {
+
+  const particlesInit = async (engine) => {
+    await loadSlim(engine);
+  };
+
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-black text-white px-6"
+      className="relative min-h-screen flex flex-col justify-center items-center bg-black text-white px-6 overflow-hidden"
     >
+      {/* AI Particle Background */}
+      <Particles
+        init={particlesInit}
+        options={{
+          fullScreen: false,
+          background: { color: "transparent" },
+          fpsLimit: 60,
+          particles: {
+            number: { value: 60 },
+            color: { value: "#a855f7" },
+            links: {
+              enable: true,
+              color: "#9333ea",
+              distance: 140,
+              opacity: 0.15,
+            },
+            move: { enable: true, speed: 0.6 },
+            size: { value: 1.5 },
+            opacity: { value: 0.4 },
+          },
+        }}
+        className="absolute inset-0 -z-10"
+      />
+
       <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
 
-        {/* Profile Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: -30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="mb-8"
-        >
-          <div className="relative">
-
-            {/* Glow Ring */}
-            <div className="absolute inset-0 bg-purple-500 blur-3xl opacity-30 rounded-full"></div>
-
-            {/* Outer Circle Frame */}
-            <div className="w-44 h-44 md:w-56 md:h-56 rounded-full border-4 border-purple-500 shadow-xl flex items-center justify-center bg-black overflow-hidden">
-
-              {/* Image */}
-              <img
-                src={profile}
-                alt="Diya Chanda"
-                className="w-full h-full object-contain scale-95"
-              />
-
-            </div>
-          </div>
-        </motion.div>
+        {/* Floating Profile Image */}
+        <ProfileImage />
 
         {/* Text Content */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.15 }}
+          transition={{ duration: 0.9 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-3 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-3">
             Hi, I'm <span className="text-purple-500">{heroData.name}</span>
           </h1>
 
@@ -50,9 +59,10 @@ const Hero = () => {
             {heroData.title}
           </h2>
 
-          <p className="text-gray-400 mb-4">
-            {heroData.subtitle}
-          </p>
+          {/* Typing Subtitle */}
+          <div className="text-purple-400 mb-4 font-mono text-sm md:text-base min-h-[26px]">
+            <TypingSubtitle />
+          </div>
 
           <p className="text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
             {heroData.description}

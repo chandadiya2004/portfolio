@@ -12,20 +12,27 @@ import Contact from "./components/sections/Contact";
 
 function App() {
   return (
-    <>
+    <div className="relative bg-black min-h-screen overflow-x-hidden">
+      
+      {/* Custom Cursor (desktop only) */}
       <CustomCursor />
+
+      {/* Main Layout */}
       <Navbar />
 
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Certificates />
-      <Research />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Certificates />
+        <Research />
+        <Contact />
+      </main>
 
       <Footer />
-    </>
+
+    </div>
   );
 }
 

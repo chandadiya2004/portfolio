@@ -2,11 +2,11 @@
   "heading": "Projects",
   "projects": [
     {
-      "title": "Car Price Prediction System",
-      "description": "A machine learning-based web application that predicts car prices using regression models trained on real-world datasets. Provides an interactive UI for instant predictions.",
-      "tech": ["Python", "Streamlit", "Scikit-learn"],
-      "github": "https://github.com/chandadiya2004/car-price-prediction",
-      "demo": "https://car-price-prediction-9md2.onrender.com/"
+      "title": "Movie Recommendation System",
+      "description": "A content-based recommendation engine using cosine similarity to suggest movies based on user preferences and feature similarity.",
+      "tech": ["Python", "Streamlit", "Scikit-learn", "Cosine Similarity"],
+      "github": "https://github.com/chandadiya2004/movie-recommendation-system",
+      "demo": "https://movie-recommendation-system-diya.streamlit.app/"
     },
     {
       "title": "Diabetes Prediction System",
@@ -15,14 +15,13 @@
       "github": "https://github.com/chandadiya2004/diabetes-prediction",
       "demo": "https://diabetes-prediction-diya.onrender.com/"
     },
-    {
-      "title": "Movie Recommendation System",
-      "description": "A content-based recommendation engine using cosine similarity to suggest movies based on user preferences and feature similarity.",
-      "tech": ["Python", "Streamlit", "Scikit-learn", "Cosine Similarity"],
-      "github": "https://github.com/chandadiya2004/movie-recommendation-system",
-      "demo": "https://movie-recommendation-system-diya.streamlit.app/"
+      {
+      "title": "Car Price Prediction System",
+      "description": "A machine learning-based web application that predicts car prices using regression models trained on real-world datasets. Provides an interactive UI for instant predictions.",
+      "tech": ["Python", "Streamlit", "Scikit-learn"],
+      "github": "https://github.com/chandadiya2004/car-price-prediction",
+      "demo": "https://car-price-prediction-9md2.onrender.com/"
     },
-
     {
       "title": "Gold Price Prediction System",
       "description": "Machine learning model that forecasts gold prices using historical financial data with an interactive Streamlit dashboard.",
