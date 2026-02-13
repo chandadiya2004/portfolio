@@ -19,6 +19,32 @@ body {
   background: black;
   color: white;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* 🔵 Animated Blue Gradient Background Layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(59,130,246,0.15), transparent 40%),
+    radial-gradient(circle at 75% 70%, rgba(147,197,253,0.12), transparent 40%);
+  animation: gradientMove 18s ease-in-out infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  50% {
+    transform: translate(-6%, 6%);
+  }
+  100% {
+    transform: translate(0%, 0%);
+  }
 }
 
 /* Smooth transitions globally */

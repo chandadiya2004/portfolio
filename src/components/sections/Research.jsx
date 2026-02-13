@@ -27,17 +27,43 @@ const Research = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-purple-500 transition"
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700 rounded-xl p-8 hover:border-purple-500 transition duration-300 group"
             >
-              <h3 className="text-xl font-semibold text-purple-400 mb-2">
-                {paper.title}
-              </h3>
+              {/* Paper Icon and Title */}
+              <div className="flex items-start gap-4">
+                <div className="text-3xl mt-1">📄</div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-purple-400 mb-3 group-hover:text-purple-300 transition">
+                    {paper.title}
+                  </h3>
+                </div>
+              </div>
 
-              <p className="text-gray-300">
-                {paper.conference} • {paper.year}
+              {/* Authors */}
+              <p className="text-sm text-gray-400 mb-3 ml-[52px]">
+                <span className="text-gray-500">Authors:</span> {paper.authors}
               </p>
 
-              <p className="text-gray-400 mt-3 leading-relaxed">
+              {/* DOI Link */}
+              <p className="text-sm text-gray-400 mb-4 ml-[52px]">
+                <span className="text-gray-500">DOI:</span>{" "}
+                <a
+                  href={`https://doi.org/${paper.doi}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-400 hover:text-purple-300 underline transition"
+                >
+                  {paper.doi}
+                </a>
+              </p>
+
+              {/* Conference/Journal and Year */}
+              <p className="text-sm text-gray-400 mb-4 ml-[52px]">
+                <span className="font-semibold text-purple-400">{paper.conference}</span> • {paper.year}
+              </p>
+
+              {/* Description */}
+              <p className="text-gray-300 mt-4 ml-[52px] leading-relaxed">
                 {paper.description}
               </p>
             </motion.div>

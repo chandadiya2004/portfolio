@@ -2,22 +2,20 @@
   "heading": "Research & Publications",
   "papers": [
     {
-      "title": "Deep Learning Based ECG Signal Classification",
-      "conference": "IEEE International Conference",
-      "year": "2024",
-      "description": "Proposed a CNN-based framework for automatic ECG signal classification to detect cardiac abnormalities with high accuracy."
+      "title": "FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning",
+      "authors": "Shibdas Dutta, Subhrendu Guha Neogi, Diya Chanda, Arpan Pramanik, Özgün Girgin, Enes Ladin Öncül",
+      "conference": "IEEE International Conference on Recent Trends and Innovation in Computing",
+      "year": "2025",
+      "doi": "10.1109/ICRITO66076.2025.11241706",
+      "description": "A multi-task deep learning framework for simultaneous fruit classification and quality assessment using multi-headed CNN. Achieves 98% fruit classification and 99% quality detection accuracy with Grad-CAM interpretability, deployed via Streamlit."
     },
     {
-      "title": "Respiratory Sound Analysis using AI",
-      "conference": "Springer Journal",
-      "year": "2024",
-      "description": "Designed a deep learning model to classify respiratory sounds for early detection of lung diseases."
-    },
-    {
-      "title": "Crop Disease Detection using Computer Vision",
-      "conference": "Elsevier Journal",
-      "year": "2023",
-      "description": "Developed a CNN-based model to detect crop diseases using leaf images to support smart agriculture."
+      "title": "CropSense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops",
+      "authors": "Shibdas Dutta, Subhrendu Guha Neogi, Shiladitya Chowdhury, Vikrant Chole, Arpan Pramanik, Diya Chanda",
+      "conference": "IEEE International Conference on Recent Trends and Innovation in Computing",
+      "year": "2025",
+      "doi": "10.1109/ICRITO66076.2025.11241535",
+      "description": "Lightweight multi-headed CNN for potato and tomato quality classification. Achieves 99.9% crop classification and 98.5% quality detection accuracy with Grad-CAM visualizations, deployed via Streamlit for real-time precision agriculture."
     }
   ]
 }

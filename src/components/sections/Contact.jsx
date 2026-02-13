@@ -1,7 +1,62 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import data from "../../data/sections/contact.json";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("no0vrcYDYm-2-MRJ5");
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await emailjs.send(
+        "service_oplv739",
+        "template_iy8vudy",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: data.email,
+        }
+      );
+
+      if (response.status === 200) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 5000);
+      }
+    } catch (err) {
+      setError("Failed to send message. Please try again.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -33,6 +88,7 @@ const Contact = () => {
 
         {/* Contact Form */}
         <motion.form
+          onSubmit={handleSubmit}
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -41,27 +97,52 @@ const Contact = () => {
         >
           <input
             type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             placeholder="Your Name"
+            required
             className="w-full p-3 bg-black/40 border border-gray-600 rounded-lg outline-none focus:border-purple-500"
           />
 
           <input
             type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             placeholder="Your Email"
+            required
             className="w-full p-3 bg-black/40 border border-gray-600 rounded-lg outline-none focus:border-purple-500"
           />
 
           <textarea
+            name="message"
             rows="5"
+            value={formData.message}
+            onChange={handleChange}
             placeholder="Your Message"
+            required
             className="w-full p-3 bg-black/40 border border-gray-600 rounded-lg outline-none focus:border-purple-500"
           ></textarea>
 
+          {submitted && (
+            <div className="bg-green-500/20 border border-green-500 text-green-300 p-3 rounded-lg text-sm">
+              ✓ Message sent successfully!
+            </div>
+          )}
+
+          {error && (
+            <div className="bg-red-500/20 border border-red-500 text-red-300 p-3 rounded-lg text-sm">
+              ✗ {error}
+            </div>
+          )}
+
           <button
             type="submit"
-            className="bg-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition w-full"
+            disabled={loading}
+            className="bg-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition w-full disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send Message
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </motion.form>
 
