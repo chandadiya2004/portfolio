@@ -5,7 +5,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md text-white z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
         
         {/* Logo */}
         <h1 className="text-2xl font-bold text-purple-500">Diya.dev</h1>

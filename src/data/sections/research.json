@@ -2,19 +2,25 @@
   "heading": "Research & Publications",
   "papers": [
     {
+      "id": 1,
+      "icon": "🌾",
       "title": "FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning",
       "authors": "Shibdas Dutta, Subhrendu Guha Neogi, Diya Chanda, Arpan Pramanik, Özgün Girgin, Enes Ladin Öncül",
       "conference": "IEEE International Conference on Recent Trends and Innovation in Computing",
       "year": "2025",
       "doi": "10.1109/ICRITO66076.2025.11241706",
+      "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1200&auto=format&fit=crop",
       "description": "A multi-task deep learning framework for simultaneous fruit classification and quality assessment using multi-headed CNN. Achieves 98% fruit classification and 99% quality detection accuracy with Grad-CAM interpretability, deployed via Streamlit."
     },
     {
+      "id": 2,
+      "icon": "🥔",
       "title": "CropSense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops",
       "authors": "Shibdas Dutta, Subhrendu Guha Neogi, Shiladitya Chowdhury, Vikrant Chole, Arpan Pramanik, Diya Chanda",
       "conference": "IEEE International Conference on Recent Trends and Innovation in Computing",
       "year": "2025",
       "doi": "10.1109/ICRITO66076.2025.11241535",
+      "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop",
       "description": "Lightweight multi-headed CNN for potato and tomato quality classification. Achieves 99.9% crop classification and 98.5% quality detection accuracy with Grad-CAM visualizations, deployed via Streamlit for real-time precision agriculture."
     }
   ]
