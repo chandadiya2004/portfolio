@@ -19,7 +19,7 @@ const Certificates = () => {
           {data.heading}
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {data.certificates.map((cert, index) => (
             <motion.div
               key={index}
@@ -33,13 +33,50 @@ const Certificates = () => {
                 {cert.title}
               </h3>
 
-              <p className="text-gray-300">
-                {cert.platform} • {cert.issuer}
+              {cert.article && (
+                <p className="text-purple-300 font-medium mb-2">
+                  "{cert.article}"
+                </p>
+              )}
+
+              {cert.program && (
+                <p className="text-purple-300 font-medium mb-2">
+                  {cert.program}
+                </p>
+              )}
+
+              <p className="text-gray-300 mb-2">
+                {cert.issuer}
               </p>
 
-              <p className="text-sm text-gray-400 mt-2">
+              {cert.position && (
+                <p className="text-gray-400 text-sm mb-2">
+                  {cert.position}
+                </p>
+              )}
+
+              <p className="text-sm text-gray-400 mb-3">
                 {cert.year}
               </p>
+
+              {cert.description && (
+                <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                  {cert.description}
+                </p>
+              )}
+
+              {cert.skills && (
+                <div className="flex flex-wrap gap-2">
+                  {cert.skills.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs bg-purple-900/40 text-purple-300 px-2 py-1 rounded"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

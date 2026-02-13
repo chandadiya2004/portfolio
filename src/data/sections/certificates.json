@@ -2,28 +2,38 @@
   "heading": "Certifications",
   "certificates": [
     {
-      "title": "Deep Learning Specialization",
-      "platform": "Coursera",
-      "issuer": "DeepLearning.AI",
-      "year": "2024"
+      "title": "📜 Certificate of Merit",
+      "article": "AI-Driven Smart Waste Management System",
+      "issuer": "Anuranan (University Journal)",
+      "year": "2025",
+      "description": "Certificate of Merit for my article published in my university's journal Anuranan. What began as a 💡 4th semester project on solving environmental challenges through AI has now turned into a published academic contribution. This achievement motivates me to keep pushing boundaries in AI & Sustainable Technology. 🌿✨"
     },
     {
-      "title": "Machine Learning with Python",
-      "platform": "IBM",
-      "issuer": "Coursera",
-      "year": "2023"
+      "title": "🎯 AI & Machine Learning Engineer",
+      "position": "Internship",
+      "issuer": "Xeta Labs, Guwahati",
+      "year": "2025",
+      "description": "Successfully completed a 3-month internship as an AI & Machine Learning Engineer. ⚡"
     },
     {
-      "title": "Generative AI Fundamentals",
-      "platform": "Google Cloud",
-      "issuer": "Google",
-      "year": "2024"
+      "title": "🎓 STTP Certificate",
+      "program": "Revolutionizing Signal Processing: The Impact of AI and Machine Learning",
+      "issuer": "Dream Institute of Technology (DIT) - DIT-IEEE-SPS",
+      "year": "Mar 2025",
+      "description": "One Week Short Term Training Program focusing on the latest advancements in signal processing and artificial intelligence applications."
     },
     {
-      "title": "Full Stack Web Development",
-      "platform": "Udemy",
-      "issuer": "Udemy",
-      "year": "2023"
+      "title": "☁️ AWS Certifications",
+      "issuer": "DataSpace Academy",
+      "year": "Nov 2024",
+      "skills": ["Amazon Web Services (AWS)"]
+    },
+    {
+      "title": "🔒 Summer Intern - Cyber Security",
+      "position": "Internship",
+      "issuer": "DataSpace Academy",
+      "year": "Jul 2024",
+      "skills": ["Tenable Nessus", "Kali Linux", "+2 skills"]
     }
   ]
 }
