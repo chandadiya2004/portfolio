@@ -2,6 +2,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import data from "../../data/sections/certificates.json";
 
+// Import certificate images
+import IEEECert from "../../assets/certificates/IEEE_certificate.png";
+import SIHCert from "../../assets/certificates/SIH_certificate.png";
+import MeritCert from "../../assets/certificates/Merit_certificate.png";
+import SttpCert from "../../assets/certificates/STTP_certificate.png";
+import AWSCert from "../../assets/certificates/AWS_certificate.png";
+import InternshipCert from "../../assets/certificates/Internship_certificate.png";
+import XetaCert from "../../assets/certificates/Xeta_Labs_certificate.png";
+
+// Map certificate IDs to imported images
+const certificateImages = {
+  1: IEEECert,
+  2: SIHCert,
+  3: MeritCert,
+  4: SttpCert,
+  5: AWSCert,
+  6: InternshipCert,
+  7: XetaCert,
+};
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -109,7 +129,7 @@ const Certificates = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8"
         >
           {data.certificates.map((cert) => (
             <motion.div
@@ -193,7 +213,7 @@ const Certificates = () => {
                 )}
 
                 {/* View Certificate Button */}
-                {cert.image && (
+                {certificateImages[cert.id] && (
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -217,19 +237,19 @@ const Certificates = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 sm:p-6"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-2xl w-full max-h-[80vh]"
+              className="relative w-full max-w-lg sm:max-w-2xl max-h-[85vh] sm:max-h-[80vh]"
             >
               <img
-                src={selectedCert.image}
+                src={certificateImages[selectedCert.id]}
                 alt={selectedCert.title}
-                className="w-full h-full object-contain rounded-xl shadow-2xl shadow-purple-500/50"
+                className="w-full h-auto object-contain rounded-xl shadow-2xl shadow-purple-500/50"
               />
               
               {/* Close Button */}
@@ -237,7 +257,7 @@ const Certificates = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setSelectedCert(null)}
-                className="absolute top-4 right-4 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-10 h-10 flex items-center justify-center text-xl transition-all shadow-lg"
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-purple-600 hover:bg-purple-700 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-lg sm:text-xl transition-all shadow-lg"
               >
                 ✕
               </motion.button>
