@@ -31,21 +31,7 @@ const letterVariants = {
   }),
 };
 
-const scrollIndicatorVariants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { delay: 2, duration: 0.8 },
-  },
-};
 
-const bounceVariants = {
-  animate: {
-    y: [0, 10, 0],
-    transition: { repeat: Infinity, duration: 2 },
-  },
-};
 
 const Hero = () => {
   const nameChars = heroData.name.split("");
@@ -197,28 +183,7 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          variants={scrollIndicatorVariants}
-          initial="hidden"
-          animate="visible"
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            variants={bounceVariants}
-            animate="animate"
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-xs md:text-sm text-gray-400 tracking-wide">Scroll</span>
-            <div className="w-6 h-10 border-2 border-purple-500 rounded-full flex items-start justify-center p-2">
-              <motion.div
-                className="w-1 h-2 bg-purple-500 rounded-full"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-              />
-            </div>
-          </motion.div>
-        </motion.div>
+
 
       </div>
     </section>
