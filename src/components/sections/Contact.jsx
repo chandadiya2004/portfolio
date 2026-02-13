@@ -83,9 +83,36 @@ const Contact = () => {
           </p>
 
           <div className="space-y-4 text-gray-300">
-            <p>📧 {data.email}</p>
-            <p>📞 {data.phone}</p>
+            <p>
+              📧{" "}
+              <a
+                href={`mailto:${data.email}`}
+                className="text-purple-400 hover:text-purple-300 transition"
+              >
+                {data.email}
+              </a>
+            </p>
+            <p>
+              📞{" "}
+              <a
+                href={`tel:${data.phone}`}
+                className="text-purple-400 hover:text-purple-300 transition"
+              >
+                {data.phone}
+              </a>
+            </p>
             <p>📍 {data.location}</p>
+            <p>
+              🔗{" "}
+              <a
+                href={data.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 transition"
+              >
+                LinkedIn Profile
+              </a>
+            </p>
           </div>
         </motion.div>
 
