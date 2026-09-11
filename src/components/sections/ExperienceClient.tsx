@@ -83,15 +83,23 @@ export const ExperienceClient = ({
     if (nextExperience) setActiveId(nextExperience.id);
   };
 
-  // Keep mobile tab into view when activeId changes
+  const isInitialMount = useRef(true);
+
+  // Keep mobile tab centered horizontally within tabsContainerRef ONLY after user switches activeId
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     const activeTabEl = document.getElementById(`mobile-tab-${activeId}`);
-    if (activeTabEl && tabsContainerRef.current) {
-      activeTabEl.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center',
-      });
+    const container = tabsContainerRef.current;
+    if (activeTabEl && container) {
+      const containerRect = container.getBoundingClientRect();
+      const tabRect = activeTabEl.getBoundingClientRect();
+      const offset =
+        tabRect.left - containerRect.left - container.clientWidth / 2 + activeTabEl.clientWidth / 2;
+      container.scrollBy({ left: offset, behavior: 'smooth' });
     }
   }, [activeId]);
 
