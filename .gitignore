@@ -168,3 +168,8 @@ vite.config.ts.timestamp-*
 AGENTS.md
 CLAUDE.md
 .agents
+
+# SEO Documentation
+SEO_WORKFLOW_PLAN.md
+SEO_*.md
+

@@ -43,41 +43,46 @@ export const WaveTitle: FC<WaveTitleProps> = ({ text, className = '' }) => {
   let charPointer = 0;
 
   return (
-    <span
-      className={`inline-flex flex-wrap justify-center items-center gap-x-[0.28em] select-none ${className}`}
-      aria-label={text}
-    >
-      {words.map((word, wordIndex) => (
-        <span
-          key={wordIndex}
-          className="inline-block whitespace-nowrap overflow-visible py-0.5"
-        >
-          {word.split('').map((char) => {
-            const index = charPointer++;
+    <>
+      {/* Visually hidden, semantic plain-text element for SEO crawlers & screen readers */}
+      <span className="sr-only">{text}</span>
 
-            return (
-              <span
-                key={index}
-                ref={(el) => {
-                  letterRefs.current[index] = el;
-                }}
-                aria-hidden="true"
-                data-cursor="interactive"
-                className={`inline-block select-none transition-colors duration-200 ease-out hover:text-terracotta ${
-                  !initialEntranceComplete ? 'animate-sea-wave' : ''
-                }`}
-                style={{
-                  animationDelay: !initialEntranceComplete ? `${index * 55}ms` : undefined,
-                  display: 'inline-block',
-                }}
-              >
-                {char}
-              </span>
-            );
-          })}
-        </span>
-      ))}
-    </span>
+      {/* Visual animated characters container */}
+      <span
+        aria-hidden="true"
+        className={`inline-flex flex-wrap justify-center items-center gap-x-[0.28em] select-none ${className}`}
+      >
+        {words.map((word, wordIndex) => (
+          <span
+            key={wordIndex}
+            className="inline-block whitespace-nowrap overflow-visible py-0.5"
+          >
+            {word.split('').map((char) => {
+              const index = charPointer++;
+
+              return (
+                <span
+                  key={index}
+                  ref={(el) => {
+                    letterRefs.current[index] = el;
+                  }}
+                  data-cursor="interactive"
+                  className={`inline-block select-none transition-colors duration-200 ease-out hover:text-terracotta ${
+                    !initialEntranceComplete ? 'animate-sea-wave' : ''
+                  }`}
+                  style={{
+                    animationDelay: !initialEntranceComplete ? `${index * 55}ms` : undefined,
+                    display: 'inline-block',
+                  }}
+                >
+                  {char}
+                </span>
+              );
+            })}
+          </span>
+        ))}
+      </span>
+    </>
   );
 };
 

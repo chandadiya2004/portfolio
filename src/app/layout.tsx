@@ -46,15 +46,18 @@ export const metadata: Metadata = {
     template: '%s | Diya Chanda',
   },
   description:
-    'Undergraduate AI researcher and software engineer specializing in explainable deep learning, computer vision, and agricultural intelligence systems. Published IEEE and Springer author.',
+    'Diya Chanda is an AI researcher & engineer specializing in explainable deep learning, computer vision, and RAG web systems. Published IEEE & Springer author.',
   keywords: [
     'Diya Chanda',
     'AI Researcher',
+    'AI Engineer',
     'Machine Learning Engineer',
     'Deep Learning',
     'Computer Vision',
     'Explainable AI',
     'XAI',
+    'RAG',
+    'Retrieval-Augmented Generation',
     'IEEE ICRITO',
     'Springer LNNS',
     'The Neotia University',
@@ -88,7 +91,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: 'Diya Chanda — AI Researcher & Machine Learning Engineer',
     description:
-      'Undergraduate AI researcher and software engineer specializing in explainable deep learning, computer vision, and agricultural intelligence systems.',
+      'Diya Chanda is an AI researcher & engineer specializing in explainable deep learning, computer vision, and RAG web systems.',
     siteName: 'Diya Chanda',
     images: [
       {
@@ -103,7 +106,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Diya Chanda — AI Researcher & Machine Learning Engineer',
     description:
-      'Undergraduate AI researcher and software engineer specializing in explainable deep learning, computer vision, and precision agricultural AI.',
+      'Diya Chanda is an AI researcher & engineer specializing in explainable deep learning, computer vision, and RAG web systems.',
     images: [
       {
         url: '/images/og-image.png',

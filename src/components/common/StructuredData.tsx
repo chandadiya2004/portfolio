@@ -46,7 +46,7 @@ export const StructuredData = () => {
         url: baseUrl,
         name: 'Diya Chanda — AI Researcher & Machine Learning Engineer',
         description:
-          'Undergraduate AI researcher and software engineer specializing in explainable deep learning, computer vision, and agricultural intelligence systems. Published IEEE and Springer author.',
+          'Diya Chanda is an AI researcher & engineer specializing in explainable deep learning, computer vision, and RAG web systems. Published IEEE & Springer author.',
         inLanguage: 'en-US',
         isPartOf: {
           '@id': `${baseUrl}/#website`,
@@ -57,9 +57,9 @@ export const StructuredData = () => {
           name: 'Diya Chanda',
           givenName: 'Diya',
           familyName: 'Chanda',
-          jobTitle: 'AI Researcher & Machine Learning Engineer',
+          jobTitle: 'AI Researcher & AI Engineer',
           description:
-            'Undergraduate AI researcher specializing in explainable deep learning, computer vision, and agricultural intelligence systems. Published author at IEEE ICRITO and Springer LNNS.',
+            'AI researcher and machine learning engineer bridging empirical deep learning with production web systems. Specializing in explainable AI, computer vision, and RAG-augmented intelligent architectures. Published author at IEEE ICRITO and Springer LNNS.',
           url: baseUrl,
           image: `${baseUrl}/images/profile.webp`,
           sameAs: [
@@ -70,13 +70,17 @@ export const StructuredData = () => {
           alumniOf: {
             '@type': 'EducationalOrganization',
             name: 'The Neotia University',
-            department: 'Computer Science & Engineering (AI & ML)',
+            department: {
+              '@type': 'Organization',
+              name: 'Computer Science & Engineering (AI & ML)',
+            },
           },
           knowsAbout: [
             'Artificial Intelligence',
             'Deep Learning',
             'Computer Vision',
             'Explainable AI (XAI)',
+            'RAG (Retrieval-Augmented Generation)',
             'Natural Language Processing',
             'Full-Stack Web Development',
             'PyTorch',
