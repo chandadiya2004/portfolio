@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import {
   Brain,
   Bot,
@@ -8,10 +8,9 @@ import {
   Globe,
   Database,
   Terminal,
+  Cpu,
   Layers,
   Sparkles,
-  ChevronDown,
-  ChevronUp,
 } from 'lucide-react';
 
 interface SkillCategory {
@@ -30,247 +29,140 @@ interface SkillsClientProps {
 }
 
 const iconMap: Record<string, ReactNode> = {
-  'ai-ml': <Brain size={22} className="text-terracotta" />,
-  'gen-ai': <Bot size={22} className="text-terracotta" />,
-  languages: <Code2 size={22} className="text-terracotta" />,
-  'web-backend': <Globe size={22} className="text-terracotta" />,
-  'databases-cloud': <Database size={22} className="text-terracotta" />,
-  'devops-tools': <Terminal size={22} className="text-terracotta" />,
+  'ai-ml': <Brain size={18} className="text-terracotta" />,
+  'gen-ai': <Bot size={18} className="text-terracotta" />,
+  languages: <Code2 size={18} className="text-terracotta" />,
+  'web-backend': <Globe size={18} className="text-terracotta" />,
+  'databases-cloud': <Database size={18} className="text-terracotta" />,
+  'devops-tools': <Terminal size={18} className="text-terracotta" />,
 };
-
-type FilterTab = 'all' | 'ai' | 'backend' | 'infra';
 
 export const SkillsClient = ({
   heading,
-  eyebrow,
   description,
   categories,
 }: SkillsClientProps) => {
-  const [activeTab, setActiveTab] = useState<FilterTab>('all');
-  const [activeSkill, setActiveSkill] = useState<string | null>(null);
-  const [showAllSkills, setShowAllSkills] = useState<boolean>(false);
-
-  const totalSkillsCount = useMemo(
-    () => categories.reduce((acc, cat) => acc + cat.skills.length, 0),
-    [categories]
-  );
-
-  const allFilteredCategories = useMemo(() => {
-    if (activeTab === 'ai') {
-      return categories.filter((c) => c.id === 'ai-ml' || c.id === 'gen-ai');
-    }
-    if (activeTab === 'backend') {
-      return categories.filter((c) => c.id === 'languages' || c.id === 'web-backend');
-    }
-    if (activeTab === 'infra') {
-      return categories.filter((c) => c.id === 'databases-cloud' || c.id === 'devops-tools');
-    }
-    return categories;
-  }, [activeTab, categories]);
-
-  const displayedCategories = useMemo(() => {
-    if (activeTab === 'all' && !showAllSkills) {
-      return allFilteredCategories.slice(0, 3);
-    }
-    return allFilteredCategories;
-  }, [activeTab, showAllSkills, allFilteredCategories]);
-
-  const tabs: { id: FilterTab; label: string; count: number }[] = [
-    { id: 'all', label: 'All Capabilities', count: totalSkillsCount },
-    {
-      id: 'ai',
-      label: 'AI & Generative Systems',
-      count: categories
-        .filter((c) => c.id === 'ai-ml' || c.id === 'gen-ai')
-        .reduce((acc, c) => acc + c.skills.length, 0),
-    },
-    {
-      id: 'backend',
-      label: 'Languages & Backend',
-      count: categories
-        .filter((c) => c.id === 'languages' || c.id === 'web-backend')
-        .reduce((acc, c) => acc + c.skills.length, 0),
-    },
-    {
-      id: 'infra',
-      label: 'Databases & DevOps',
-      count: categories
-        .filter((c) => c.id === 'databases-cloud' || c.id === 'devops-tools')
-        .reduce((acc, c) => acc + c.skills.length, 0),
-    },
-  ];
+  const totalSkills = categories.reduce((acc, cat) => acc + cat.skills.length, 0);
 
   return (
     <section
       id="skills"
-      className="py-16 sm:py-24 px-3.5 sm:px-6 border-t border-border-subtle bg-surface/20 transition-colors w-full max-w-full overflow-hidden"
+      className="py-16 sm:py-24 border-t border-hairline transition-colors w-full max-w-full overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-          <p className="text-xs font-mono uppercase tracking-widest text-terracotta font-semibold mb-2 flex items-center justify-center gap-1.5">
-            <Layers size={14} />
-            <span>{eyebrow || 'Architecture & Engineering Tooling'}</span>
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
-            {heading}
-          </h2>
-          <div className="w-12 h-0.5 bg-terracotta mx-auto mb-4" />
-          <p className="text-text-sub text-xs sm:text-base md:text-lg leading-relaxed text-justify px-1 sm:px-2">
-            {description}
-          </p>
-        </div>
+        {/* Section Header: Monograph Chapter § 04 */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-10 sm:mb-14 border-b border-hairline gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-2 text-xs font-mono text-terracotta tracking-wider uppercase font-semibold">
+              <span>§ 04 // Laboratory Matrix</span>
+              <span className="text-border-hairline font-sans">·</span>
+              <span className="text-text-mute font-normal">Technical Competency &amp; Tooling</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight">
+              {heading}
+            </h2>
+          </div>
 
-        {/* Mobile Horizontal Scrollable Filter Tabs */}
-        <div className="w-full flex justify-start sm:justify-center mb-8 sm:mb-12 overflow-x-auto no-scrollbar py-1 px-1">
-          <div className="inline-flex sm:flex sm:flex-wrap items-center gap-1 sm:gap-1.5 p-1 rounded-xl bg-surface border border-border-subtle shadow-xs">
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    if (tab.id !== 'all') setShowAllSkills(true);
-                  }}
-                  className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-mono font-medium transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer whitespace-nowrap focus:outline-none select-none border ${
-                    isActive
-                      ? 'bg-card text-terracotta font-bold shadow-xs border-border-subtle'
-                      : 'border-transparent text-text-mute hover:text-text-main hover:bg-card/50'
-                  }`}
-                >
-                  <span>{tab.label}</span>
-                  <span
-                    className={`px-1.5 py-0.5 rounded text-[10px] ${
-                      isActive
-                        ? 'bg-terracotta/15 text-terracotta'
-                        : 'bg-surface/80 text-text-mute'
-                    }`}
-                  >
-                    {tab.count}
-                  </span>
-                </button>
-              );
-            })}
+          <div className="font-mono text-xs text-text-mute md:text-right max-w-sm">
+            <span className="text-text-main font-semibold block text-sm">
+              {totalSkills} Benchmarked Technologies
+            </span>
+            <span className="leading-tight block mt-0.5">
+              {description || 'Curated directory of neural frameworks, production runtimes, and data infrastructure.'}
+            </span>
           </div>
         </div>
 
-        {/* Bespoke Capabilities Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
-          {displayedCategories.map((category) => (
+        {/* Structured 6-Domain Laboratory Matrix (All Visible, Zero Filter Tabs) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {categories.map((category, index) => (
             <div
               key={category.id}
-              className="bg-card border border-border-subtle hover:border-terracotta/40 rounded-2xl p-4 sm:p-7 shadow-sm transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 hover:shadow-md w-full min-w-0"
+              className="p-5 sm:p-6 rounded-lg border border-hairline bg-surface/40 dark:bg-card/40 hover:bg-surface dark:hover:bg-card hover:border-terracotta/50 transition-all flex flex-col justify-between group"
             >
               <div>
-                
-                {/* Domain Card Header */}
-                <div className="flex items-start justify-between gap-2.5 sm:gap-3 mb-3.5 sm:mb-4 pb-3 border-b border-border-subtle/60">
-                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                    <div className="p-1.5 sm:p-2.5 rounded-xl bg-surface border border-border-subtle group-hover:border-terracotta/40 transition-colors flex-shrink-0">
-                      {iconMap[category.id] || <Layers size={18} className="text-terracotta" />}
+                {/* Category Header */}
+                <div className="flex items-start justify-between pb-3 mb-3.5 border-b border-hairline gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded border border-hairline bg-canvas text-terracotta flex-shrink-0">
+                      {iconMap[category.id] || <Cpu size={18} className="text-terracotta" />}
                     </div>
-                    <div className="min-w-0">
-                      <h3 className="font-serif text-base sm:text-lg font-bold text-text-main group-hover:text-terracotta transition-colors truncate">
+                    <div>
+                      <h3 className="font-serif text-lg font-bold text-text-main group-hover:text-terracotta transition-colors leading-snug">
                         {category.title}
                       </h3>
-                      <span className="text-[10px] font-mono text-terracotta font-medium uppercase tracking-wider block">
+                      <span className="text-[10px] font-mono text-terracotta font-semibold uppercase tracking-wider block">
                         {category.tag}
                       </span>
                     </div>
                   </div>
 
-                  <span className="text-[10px] sm:text-[11px] font-mono text-text-mute px-1.5 sm:px-2 py-0.5 rounded bg-surface border border-border-subtle flex-shrink-0">
-                    {category.skills.length} tools
+                  <span className="text-[10px] font-mono text-text-mute px-2 py-0.5 rounded border border-hairline bg-canvas flex-shrink-0">
+                    0{category.skills.length} tools
                   </span>
                 </div>
 
-                {/* Scope Description */}
-                <p className="text-xs text-text-sub leading-relaxed text-justify mb-4 sm:mb-6">
+                {/* Scope Definition */}
+                <p className="text-xs text-text-sub font-sans leading-relaxed mb-4">
                   {category.scope}
                 </p>
 
-                {/* Interactive Skills Chip Matrix */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-2 w-full">
-                  {category.skills.map((skill, idx) => {
-                    const isHovered = activeSkill === skill;
-                    return (
-                      <span
-                        key={idx}
-                        onMouseEnter={() => setActiveSkill(skill)}
-                        onMouseLeave={() => setActiveSkill(null)}
-                        className={`inline-flex items-center gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-mono font-medium transition-all duration-200 cursor-default max-w-full break-words ${
-                          isHovered
-                            ? 'bg-terracotta text-white shadow-xs scale-105'
-                            : 'bg-surface hover:bg-surface/90 border border-border-subtle hover:border-terracotta/50 text-text-main'
-                        }`}
-                      >
-                        <span
-                          className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
-                            isHovered ? 'bg-white' : 'bg-terracotta'
-                          }`}
-                        />
-                        <span>{skill}</span>
-                      </span>
-                    );
-                  })}
+                {/* Monospaced Skill Chips */}
+                <div className="flex flex-wrap gap-1.5">
+                  {category.skills.map((skill, sIdx) => (
+                    <span
+                      key={sIdx}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-hairline bg-canvas/80 text-[11px] font-mono text-text-main font-medium group-hover:border-hairline"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-terracotta flex-shrink-0" />
+                      <span>{skill}</span>
+                    </span>
+                  ))}
                 </div>
+              </div>
 
+              {/* Index Footer */}
+              <div className="pt-4 mt-5 border-t border-hairline/60 flex items-center justify-between text-[10px] font-mono text-text-mute uppercase tracking-wider">
+                <span>Domain Index 0{index + 1}</span>
+                <span>Verified Stack</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Expand / Collapse "See More Skills" Button (when in All view) */}
-        {activeTab === 'all' && allFilteredCategories.length > 3 && (
-          <div className="flex justify-center mb-10 sm:mb-14">
-            <button
-              onClick={() => setShowAllSkills(!showAllSkills)}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-surface hover:bg-card border border-border hover:border-terracotta/50 text-text-main hover:text-terracotta text-xs sm:text-sm font-mono font-medium shadow-xs transition-all duration-200 cursor-pointer"
-            >
-              <span>
-                {showAllSkills
-                  ? 'Collapse Stack View'
-                  : `See All Capabilities (${allFilteredCategories.length - 3} more domains)`}
-              </span>
-              {showAllSkills ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-          </div>
-        )}
-
-        {/* Architectural Highlights Banner */}
-        <div className="bg-card border border-border-subtle rounded-2xl p-4 sm:p-8 shadow-sm w-full">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-terracotta font-semibold mb-3 sm:mb-4">
+        {/* Core Engineering Synthesis Strip */}
+        <div className="mt-12 sm:mt-16 p-6 sm:p-8 rounded-lg border border-hairline bg-surface/30 dark:bg-card/30">
+          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-terracotta font-semibold mb-4">
             <Sparkles size={14} />
             <span>Core Engineering Synthesis</span>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-6 pt-2">
-            <div className="space-y-1.5 border-l-2 border-terracotta/40 pl-3 sm:pl-4">
-              <h4 className="font-serif text-sm sm:text-base font-bold text-text-main">
-                Deep Learning Research
-              </h4>
-              <p className="text-xs text-text-sub leading-relaxed text-justify">
-                PyTorch &amp; TensorFlow workflows optimizing multi-task CNNs and ViTs with Grad-CAM visual interpretability.
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs font-mono">
+            <div className="border-l-2 border-terracotta/70 pl-3.5 space-y-1">
+              <span className="text-text-main font-semibold block text-sm">
+                01 // Empirical Research
+              </span>
+              <p className="text-text-sub font-sans text-xs leading-relaxed">
+                PyTorch, TensorFlow, multi-headed CNNs, Grad-CAM interpretability, and cyclic learning rate optimization.
               </p>
             </div>
 
-            <div className="space-y-1.5 border-l-2 border-terracotta/40 pl-3 sm:pl-4">
-              <h4 className="font-serif text-sm sm:text-base font-bold text-text-main">
-                Grounded Retrieval (RAG)
-              </h4>
-              <p className="text-xs text-text-sub leading-relaxed text-justify">
-                LangChain and vector similarity pipelines ensuring verified knowledge retrieval and hallucination mitigation.
+            <div className="border-l-2 border-terracotta/70 pl-3.5 space-y-1">
+              <span className="text-text-main font-semibold block text-sm">
+                02 // Applied AI &amp; RAG
+              </span>
+              <p className="text-text-sub font-sans text-xs leading-relaxed">
+                FastAPI, Groq Llama-3.3, LangChain, ChromaDB vector indexing, and soil satellite physics APIs.
               </p>
             </div>
 
-            <div className="space-y-1.5 border-l-2 border-terracotta/40 pl-3 sm:pl-4 sm:col-span-2 md:col-span-1">
-              <h4 className="font-serif text-sm sm:text-base font-bold text-text-main">
-                Full-Stack Systems
-              </h4>
-              <p className="text-xs text-text-sub leading-relaxed text-justify">
-                FastAPI, React.js, PostgreSQL, and Dockerized microservices architected for low-latency asynchronous throughput.
+            <div className="border-l-2 border-terracotta/70 pl-3.5 space-y-1">
+              <span className="text-text-main font-semibold block text-sm">
+                03 // Production Platforms
+              </span>
+              <p className="text-text-sub font-sans text-xs leading-relaxed">
+                Next.js 15, PostgreSQL, Supabase, Upstash Redis caching, Docker containerization, and OpenTelemetry tracing.
               </p>
             </div>
           </div>

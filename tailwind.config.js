@@ -19,6 +19,7 @@ export default {
         'card-hover': 'var(--bg-card-hover)',
         border: 'var(--border-default)',
         'border-subtle': 'var(--border-subtle)',
+        'border-hairline': 'var(--border-hairline)',
         'text-main': 'var(--text-primary)',
         'text-sub': 'var(--text-secondary)',
         'text-mute': 'var(--text-muted)',

@@ -95,10 +95,16 @@ export const metadata: Metadata = {
     siteName: 'Diya Chanda',
     images: [
       {
+        url: '/images/profile-square.png',
+        width: 800,
+        height: 800,
+        alt: 'Diya Chanda — AI Researcher & AI Engineer',
+      },
+      {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Diya Chanda — AI Researcher & Machine Learning Engineer',
+        alt: 'Diya Chanda — AI Researcher & AI Engineer',
       },
     ],
   },
@@ -148,6 +154,8 @@ export default function RootLayout({
     >
       <head>
         <StructuredData />
+        <link rel="image_src" href="/images/profile-square.png" />
+        <meta name="thumbnail" content={`${siteUrl}/images/profile-square.png`} />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon-48x48.png" type="image/png" sizes="48x48" />
         <link rel="icon" href="/icon-96x96.png" type="image/png" sizes="96x96" />

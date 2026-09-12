@@ -1,15 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import {
   ArrowUpRight,
   CheckCircle2,
-  Sparkles,
-  Layers,
   Activity,
-  ChevronDown,
-  ChevronUp,
+  Terminal,
+  ExternalLink,
 } from 'lucide-react';
 import { GithubIcon } from '../common/Icons';
 
@@ -37,140 +34,142 @@ interface ProjectsClientProps {
 
 export const ProjectsClient = ({
   heading,
-  eyebrow,
   description,
   projects,
 }: ProjectsClientProps) => {
-  const [expandedDetails, setExpandedDetails] = useState<Record<number, boolean>>({});
-  const [showAllProjects, setShowAllProjects] = useState<boolean>(false);
-
-  const toggleDetails = (id: number) => {
-    setExpandedDetails((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const displayedProjects = showAllProjects ? projects : projects.slice(0, 2);
-
   return (
-    <section id="projects" className="py-16 sm:py-24 px-3.5 sm:px-6 border-t border-border-subtle transition-colors w-full max-w-full overflow-hidden">
-      <div className="max-w-6xl mx-auto w-full">
+    <section
+      id="projects"
+      className="py-16 sm:py-24 border-t border-hairline transition-colors w-full max-w-full overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-          <p className="text-xs font-mono uppercase tracking-widest text-terracotta font-semibold mb-2 flex items-center justify-center gap-1.5">
-            <Sparkles size={14} />
-            <span>{eyebrow || 'Production Platforms & Deep Learning Systems'}</span>
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
-            {heading}
-          </h2>
-          <div className="w-12 h-0.5 bg-terracotta mx-auto mb-4" />
-          <p className="text-text-sub text-xs sm:text-base md:text-lg leading-relaxed text-justify px-1 sm:px-2">
-            {description}
-          </p>
+        {/* Section Header: Monograph Chapter § 02 */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-10 sm:mb-14 border-b border-hairline gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-2 text-xs font-mono text-terracotta tracking-wider uppercase font-semibold">
+              <span>§ 02 // Applied Intelligence</span>
+              <span className="text-border-hairline font-sans">·</span>
+              <span className="text-text-mute font-normal">Production Systems &amp; Web Architectures</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight">
+              {heading}
+            </h2>
+          </div>
+
+          <div className="font-mono text-xs text-text-mute md:text-right max-w-sm">
+            <span className="text-text-main font-semibold block text-sm">
+              0{projects.length} System Blueprints
+            </span>
+            <span className="leading-tight block mt-0.5">
+              {description || 'Enterprise compliance, climate-smart agronomy engines, and generative AI platforms.'}
+            </span>
+          </div>
         </div>
 
-        {/* Featured Projects Showcase */}
-        <div className="space-y-6 sm:space-y-12 w-full">
-          {displayedProjects.map((project, index) => {
+        {/* Systems Dossier Stream (All 4 Projects) */}
+        <div className="divide-y divide-hairline">
+          {projects.map((project, index) => {
             const isEven = index % 2 === 1;
-            const isDetailsOpen = Boolean(expandedDetails[project.id]);
 
             return (
               <article
                 key={project.id}
-                className="bg-card border border-border-subtle hover:border-terracotta/40 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-terracotta/10 transition-all duration-300 group w-full min-w-0"
+                className="py-10 sm:py-16 first:pt-0 last:pb-0 transition-colors group"
               >
-                <div className="grid lg:grid-cols-12 gap-0 items-stretch">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                   
-                  {/* Image Column */}
-                  <div
-                    className={`lg:col-span-5 relative h-48 sm:h-64 lg:h-auto min-h-[180px] sm:min-h-[280px] overflow-hidden bg-surface ${
-                      isEven ? 'lg:order-2 border-t lg:border-t-0 lg:border-l border-border-subtle' : 'border-b lg:border-b-0 lg:border-r border-border-subtle'
-                    }`}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} — ${project.tagline}`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
+                  {/* Visual Viewport Plate (5 cols) */}
+                  <div className={`lg:col-span-5 flex flex-col gap-2.5 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                    <div className="relative p-2 sm:p-2.5 bg-surface dark:bg-card border border-hairline rounded-lg shadow-xs group">
+                      {/* Corner Registration Marks (Monograph Style) */}
+                      <span className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-terracotta" />
+                      <span className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-terracotta" />
+                      <span className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-terracotta" />
+                      <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-terracotta" />
 
-                    {/* Gradient Overlay on Mobile */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:hidden" />
+                      {/* Viewport Image Container */}
+                      <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] w-full overflow-hidden rounded border border-hairline bg-surface">
+                        <Image
+                          src={project.image}
+                          alt={`${project.title} — ${project.tagline}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+                          className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                        />
 
-                    {/* Status Pill Badge */}
-                    <div className="absolute top-2.5 left-2.5 sm:top-4 sm:left-4 z-10 flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-card/90 backdrop-blur-md border border-border-subtle text-[10px] sm:text-[11px] font-mono font-medium text-text-main shadow-sm max-w-[85%] truncate">
-                      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${project.demo ? 'bg-emerald-500 animate-pulse' : 'bg-terracotta'}`} />
-                      <span className="truncate">{project.status}</span>
-                    </div>
+                        {/* Status Overlay Pill */}
+                        <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded bg-canvas/90 backdrop-blur-md border border-hairline text-[10px] font-mono font-medium text-text-main shadow-xs">
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${
+                              project.demo ? 'bg-emerald-500 animate-pulse' : 'bg-terracotta'
+                            }`}
+                          />
+                          <span className="truncate">{project.status}</span>
+                        </div>
+                      </div>
 
-                    {/* Category Tag */}
-                    <div className="absolute bottom-2.5 left-2.5 sm:bottom-4 sm:left-4 z-10 px-2.5 py-1 rounded-md bg-card/90 backdrop-blur-md border border-border-subtle text-[10px] sm:text-[11px] font-mono font-medium text-terracotta shadow-xs">
-                      {project.category}
+                      {/* Technical Viewport Caption */}
+                      <div className="flex items-center justify-between text-[10px] font-mono text-text-mute uppercase tracking-wider pt-2 px-1">
+                        <span>SYS VIEWPORT 0{project.id}</span>
+                        <span className="truncate max-w-[180px] text-right">{project.category}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Content Column */}
-                  <div className={`lg:col-span-7 p-4 sm:p-8 lg:p-10 flex flex-col justify-between min-w-0 ${isEven ? 'lg:order-1' : ''}`}>
+                  {/* Technical Specifications & Dossier Body (7 cols) */}
+                  <div className={`lg:col-span-7 flex flex-col justify-between ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                     <div>
-                      {/* Sub-header Index */}
-                      <div className="flex items-center justify-between gap-2 text-xs font-mono text-terracotta font-semibold mb-1.5 sm:mb-2">
-                        <span className="flex items-center gap-1.5">
-                          <Layers size={13} />
-                          <span>Index 0{project.id}</span>
+                      {/* Sub-header Index & Category */}
+                      <div className="flex items-center gap-2 mb-2 font-mono text-xs text-text-mute">
+                        <span className="font-semibold text-terracotta">
+                          [SYS 0{project.id}]
                         </span>
-                        <span className="text-[10px] sm:text-[11px] font-mono text-text-mute">
-                          Case Study
+                        <span className="text-border-hairline font-sans">·</span>
+                        <span className="uppercase tracking-wider text-[11px] font-medium">
+                          {project.category}
                         </span>
                       </div>
 
                       {/* Title & Tagline */}
-                      <h3 className="font-serif text-lg sm:text-2xl lg:text-3xl font-bold text-text-main group-hover:text-terracotta transition-colors mb-1 leading-snug break-words">
+                      <h3 className="font-serif text-2xl sm:text-3xl lg:text-[28px] font-bold text-text-main group-hover:text-terracotta transition-colors leading-snug">
                         {project.title}
                       </h3>
-                      <p className="text-xs sm:text-sm font-mono text-text-mute font-medium mb-3 sm:mb-4 break-words">
+                      <p className="font-mono text-xs sm:text-sm text-text-mute font-medium mt-1 leading-snug">
                         {project.tagline}
                       </p>
 
-                      {/* Narrative Description */}
-                      <p className="text-text-sub text-xs sm:text-sm lg:text-base leading-relaxed mb-4 sm:mb-6 text-justify">
+                      {/* Narrative Prose */}
+                      <p className="text-xs sm:text-sm text-text-sub leading-relaxed mt-4 font-sans">
                         {project.description}
                       </p>
 
-                      {/* Key Architectural Highlights */}
-                      <div className="mb-4 sm:mb-6">
-                        {/* Mobile Toggle Button */}
-                        <button
-                          onClick={() => toggleDetails(project.id)}
-                          className="lg:hidden w-full flex items-center justify-between px-3 py-2 rounded-xl bg-surface border border-border-subtle text-xs font-mono text-text-main font-medium mb-2 cursor-pointer"
-                        >
-                          <span>{isDetailsOpen ? 'Hide Capabilities & Specs' : 'View Key Capabilities & Specs'}</span>
-                          {isDetailsOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-                        </button>
+                      {/* Architectural Specifications Box */}
+                      <div className="mt-5 p-4 rounded-lg border border-hairline bg-surface/50 dark:bg-card/50">
+                        <div className="flex items-center gap-1.5 pb-2 mb-2.5 border-b border-hairline text-[11px] font-mono uppercase tracking-widest text-text-mute font-semibold">
+                          <Terminal size={12} className="text-terracotta" />
+                          <span>Architectural Telemetry &amp; Capabilities</span>
+                        </div>
 
-                        {/* Collapsible content on mobile, visible on desktop */}
-                        <div className={`space-y-2 bg-surface/50 rounded-xl sm:rounded-2xl p-3.5 sm:p-4 border border-border-subtle/70 ${isDetailsOpen ? 'block' : 'hidden lg:block'}`}>
-                          <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-text-mute font-semibold mb-1">
-                            Key Capabilities &amp; Architecture
-                          </span>
-                          <div className="grid sm:grid-cols-2 gap-1.5 sm:gap-2">
-                            {project.highlights.map((highlight, hIdx) => (
-                              <div key={hIdx} className="flex items-start gap-1.5 sm:gap-2 text-xs text-text-main min-w-0">
-                                <CheckCircle2 size={13} className="text-terracotta flex-shrink-0 mt-0.5" />
-                                <span className="break-words leading-tight">{highlight}</span>
-                              </div>
-                            ))}
-                          </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {project.highlights.map((highlight, hIdx) => (
+                            <div key={hIdx} className="flex items-start gap-2 text-xs font-mono text-text-main min-w-0">
+                              <CheckCircle2 size={13} className="text-emerald-500 flex-shrink-0 mt-0.5" />
+                              <span className="leading-snug">{highlight}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
 
                       {/* Tech Stack Chips */}
-                      <div className="flex flex-wrap gap-1.5 mb-5 sm:mb-8 w-full">
+                      <div className="flex flex-wrap items-center gap-1.5 mt-5">
+                        <span className="text-[11px] font-mono text-text-mute uppercase tracking-wider mr-1">
+                          Stack:
+                        </span>
                         {project.tech.map((tech, tIdx) => (
                           <span
                             key={tIdx}
-                            className="text-[10px] sm:text-[11px] font-mono bg-surface border border-border-subtle text-text-sub px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md max-w-full break-words"
+                            className="text-[11px] font-mono px-2 py-0.5 rounded border border-hairline bg-surface/80 dark:bg-card/80 text-text-sub font-medium"
                           >
                             {tech}
                           </span>
@@ -178,17 +177,17 @@ export const ProjectsClient = ({
                       </div>
                     </div>
 
-                    {/* Action Links Bar */}
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-border-subtle w-full">
+                    {/* Action Bar */}
+                    <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-6 pt-4 border-t border-hairline">
                       {project.demo && (
                         <a
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-1.5 bg-terracotta hover:bg-terracotta-hover text-white font-medium px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-xs transition-colors text-xs sm:text-sm flex-1 sm:flex-none text-center"
+                          className="inline-flex items-center gap-1.5 bg-terracotta hover:bg-terracotta-hover text-white font-mono text-xs font-medium px-4 py-2 rounded-md shadow-xs transition-colors group/btn"
                         >
-                          <span>Launch Live App</span>
-                          <ArrowUpRight size={14} />
+                          <span>Launch Live System</span>
+                          <ArrowUpRight size={13} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                         </a>
                       )}
 
@@ -197,15 +196,16 @@ export const ProjectsClient = ({
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-1.5 bg-surface hover:bg-card border border-border hover:border-terracotta/40 text-text-main hover:text-terracotta font-medium px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-lg shadow-xs transition-colors text-xs sm:text-sm flex-1 sm:flex-none text-center"
+                          className="inline-flex items-center gap-1.5 bg-surface dark:bg-card hover:bg-card border border-hairline hover:border-terracotta text-text-main hover:text-terracotta font-mono text-xs font-medium px-4 py-2 rounded-md transition-colors"
                         >
-                          <GithubIcon size={15} />
-                          <span>GitHub Repo</span>
+                          <GithubIcon size={14} />
+                          <span>Inspect Source</span>
+                          <ExternalLink size={12} className="opacity-70" />
                         </a>
                       )}
 
                       {!project.demo && (
-                        <span className="inline-flex items-center gap-1.5 text-xs font-mono text-text-mute py-1.5">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-mono text-text-mute py-1">
                           <Activity size={13} className="text-terracotta flex-shrink-0" />
                           <span>Research &amp; Advisory Engine</span>
                         </span>
@@ -219,23 +219,6 @@ export const ProjectsClient = ({
             );
           })}
         </div>
-
-        {/* View All Projects Button (for mobile users) */}
-        {projects.length > 2 && (
-          <div className="flex justify-center mt-8 sm:mt-12">
-            <button
-              onClick={() => setShowAllProjects(!showAllProjects)}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-surface hover:bg-card border border-border hover:border-terracotta/50 text-text-main hover:text-terracotta text-xs sm:text-sm font-mono font-medium shadow-xs transition-all duration-200 cursor-pointer"
-            >
-              <span>
-                {showAllProjects
-                  ? 'Collapse Projects'
-                  : `See All Systems (${projects.length - 2} more projects)`}
-              </span>
-              {showAllProjects ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-          </div>
-        )}
 
       </div>
     </section>

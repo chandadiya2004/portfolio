@@ -15,7 +15,7 @@ export const StructuredData = () => {
         name: 'Diya Chanda',
         url: baseUrl,
         logo: `${baseUrl}/images/logo.png`,
-        image: `${baseUrl}/images/og-image.png`,
+        image: `${baseUrl}/images/profile-square.png`,
         sameAs: [
           'https://github.com/chandadiya2004',
           'https://www.linkedin.com/in/diya-chanda2004/',
@@ -61,7 +61,7 @@ export const StructuredData = () => {
           description:
             'AI researcher and machine learning engineer bridging empirical deep learning with production web systems. Specializing in explainable AI, computer vision, and RAG-augmented intelligent architectures. Published author at IEEE ICRITO and Springer LNNS.',
           url: baseUrl,
-          image: `${baseUrl}/images/profile.webp`,
+          image: `${baseUrl}/images/profile-square.png`,
           sameAs: [
             'https://github.com/chandadiya2004',
             'https://www.linkedin.com/in/diya-chanda2004/',
@@ -91,7 +91,7 @@ export const StructuredData = () => {
         },
         primaryImageOfPage: {
           '@type': 'ImageObject',
-          url: `${baseUrl}/images/profile.webp`,
+          url: `${baseUrl}/images/profile-square.png`,
         },
       },
       /* Published Research Papers Schema - dynamically synced from research.json */

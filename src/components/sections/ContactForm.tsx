@@ -41,13 +41,13 @@ export const ContactForm = () => {
   };
 
   return (
-    <div className="bg-card border border-border-subtle rounded-2xl p-5 sm:p-7 md:p-8 shadow-sm w-full h-full flex flex-col justify-between">
+    <div className="bg-surface border border-hairline rounded-lg p-5 sm:p-7 md:p-8 shadow-xs w-full h-full flex flex-col justify-between">
       <div>
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <h3 className="font-serif text-lg sm:text-2xl font-bold text-text-main">
-            Send a Message
+            Send a Transmission
           </h3>
-          <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider px-2 py-0.5 rounded-full bg-surface border border-border-subtle">
+          <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider px-2 py-0.5 rounded border border-hairline bg-card">
             Direct Line
           </span>
         </div>
@@ -70,7 +70,7 @@ export const ContactForm = () => {
               required
               aria-required="true"
               placeholder="Enter your name"
-              className="w-full bg-surface border border-border-default focus:border-terracotta rounded-lg px-3.5 sm:px-4 py-2 sm:py-2.5 text-text-main placeholder:text-text-mute text-xs sm:text-sm transition-colors outline-none"
+              className="w-full bg-card border border-hairline focus:border-terracotta rounded-md px-3.5 sm:px-4 py-2 sm:py-2.5 text-text-main placeholder:text-text-mute text-xs sm:text-sm transition-colors outline-none focus:ring-1 focus:ring-terracotta/30"
             />
           </div>
 
@@ -91,7 +91,7 @@ export const ContactForm = () => {
               required
               aria-required="true"
               placeholder="name@example.com"
-              className="w-full bg-surface border border-border-default focus:border-terracotta rounded-lg px-3.5 sm:px-4 py-2 sm:py-2.5 text-text-main placeholder:text-text-mute text-xs sm:text-sm transition-colors outline-none"
+              className="w-full bg-card border border-hairline focus:border-terracotta rounded-md px-3.5 sm:px-4 py-2 sm:py-2.5 text-text-main placeholder:text-text-mute text-xs sm:text-sm transition-colors outline-none focus:ring-1 focus:ring-terracotta/30"
             />
           </div>
 
@@ -111,14 +111,14 @@ export const ContactForm = () => {
               aria-required="true"
               placeholder="Write your note, collaboration proposal, or project inquiry..."
               rows={5}
-              className="w-full bg-surface border border-border-default focus:border-terracotta rounded-lg px-3.5 sm:px-4 py-2.5 text-text-main placeholder:text-text-mute text-xs sm:text-sm transition-colors outline-none resize-none min-h-[135px] sm:min-h-[155px]"
+              className="w-full bg-card border border-hairline focus:border-terracotta rounded-md px-3.5 sm:px-4 py-2.5 text-text-main placeholder:text-text-mute text-xs sm:text-sm transition-colors outline-none resize-none min-h-[135px] sm:min-h-[155px] focus:ring-1 focus:ring-terracotta/30"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-hover disabled:opacity-60 text-white font-medium py-2.5 sm:py-3 rounded-lg shadow-sm transition-colors text-xs sm:text-sm cursor-pointer"
+            className="w-full inline-flex items-center justify-center gap-2 bg-terracotta hover:bg-terracotta-hover disabled:opacity-60 text-white font-mono font-medium py-2.5 sm:py-3 rounded-md shadow-xs transition-colors text-xs sm:text-sm cursor-pointer"
           >
             {loading ? (
               <>
@@ -137,7 +137,7 @@ export const ContactForm = () => {
             <div
               role="status"
               aria-live="polite"
-              className="flex items-center gap-2 p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 rounded-lg text-[11px] sm:text-xs font-mono"
+              className="flex items-center gap-2 p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 rounded-md text-[11px] sm:text-xs font-mono"
             >
               <CheckCircle2 size={15} className="flex-shrink-0" />
               <span>Thank you! Your message was transmitted directly to Diya.</span>
@@ -148,7 +148,7 @@ export const ContactForm = () => {
             <div
               role="alert"
               aria-live="assertive"
-              className="flex items-center gap-2 p-3 bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-400 rounded-lg text-[11px] sm:text-xs font-mono"
+              className="flex items-center gap-2 p-3 bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-400 rounded-md text-[11px] sm:text-xs font-mono"
             >
               <AlertCircle size={15} className="flex-shrink-0" />
               <span>{error}</span>
@@ -158,7 +158,7 @@ export const ContactForm = () => {
       </div>
 
       {/* Security & Reassurance Footer Badge */}
-      <div className="pt-4 mt-5 border-t border-border-subtle/60 flex items-center justify-between text-[11px] font-mono text-text-mute">
+      <div className="pt-4 mt-5 border-t border-hairline flex items-center justify-between text-[11px] font-mono text-text-mute">
         <span className="flex items-center gap-1.5 text-text-sub">
           <ShieldCheck size={13} className="text-emerald-500" />
           <span>Encrypted Direct Line</span>

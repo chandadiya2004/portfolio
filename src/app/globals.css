@@ -7,6 +7,7 @@
    ========================================================================== */
 
 :root {
+  color-scheme: light;
   /* Canvas & Surfaces (Warm Ivory / Cream) */
   --bg-canvas: #FAF8F5;
   --bg-surface: #F3EFE9;
@@ -14,6 +15,7 @@
   --bg-card-hover: #FCFBF9;
   
   /* Borders & Rules */
+  --border-hairline: #E8E2D9;
   --border-subtle: #EBE5DC;
   --border-default: #DDD5C9;
   --border-focus: #C25E38;
@@ -45,6 +47,7 @@
 }
 
 [data-theme="dark"] {
+  color-scheme: dark;
   /* Canvas & Surfaces (Deep Warm Charcoal) */
   --bg-canvas: #121110;
   --bg-surface: #1B1917;
@@ -52,6 +55,7 @@
   --bg-card-hover: #2C2824;
 
   /* Borders & Rules */
+  --border-hairline: #2A2622;
   --border-subtle: #2D2925;
   --border-default: #3A3530;
   --border-focus: #D4826A;
@@ -91,10 +95,15 @@
 }
 
 html {
-  color-scheme: light dark;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+input, textarea, select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-hairline);
 }
 
 html.lenis,
@@ -148,15 +157,33 @@ body::before {
 }
 
 /* ==========================================================================
-   CUSTOM CURSOR SUPPRESSION OF DEFAULT OS CURSOR
+   EDITORIAL MONOGRAPH HAIRLINES & STRUCTURAL UTILITIES
    ========================================================================== */
 
-@media (pointer: fine) {
-  *,
-  *::before,
-  *::after {
-    cursor: none !important;
-  }
+.border-hairline {
+  border-color: var(--border-hairline);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--border-hairline);
+}
+
+.hairline-b {
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--border-hairline);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--border-hairline);
+}
+
+.monograph-rule {
+  height: 1px;
+  background-color: var(--border-hairline);
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -182,7 +209,7 @@ body::before {
 
 @media (min-width: 1024px) {
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   ::-webkit-scrollbar-track {
     background: var(--bg-canvas);
@@ -196,91 +223,5 @@ body::before {
   }
 }
 
-/* ==========================================================================
-   SEA WAVE HERO TITLE ENTRANCE & PER-LETTER WAVE
-   ========================================================================== */
-
-@keyframes seaWaveEntrance {
-  0% {
-    opacity: 0;
-    transform: translateY(85%) rotate(5deg) scale(0.92);
-    filter: blur(4px);
-  }
-  52% {
-    opacity: 1;
-    transform: translateY(-16%) rotate(-2.5deg) scale(1.04);
-    filter: blur(0px);
-  }
-  74% {
-    transform: translateY(5%) rotate(1deg) scale(0.99);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg) scale(1);
-    filter: blur(0px);
-  }
-}
-
-@keyframes letterWave {
-  0% {
-    transform: translateY(0) scale(1) rotate(0deg);
-  }
-  26% {
-    transform: translateY(-20px) scale(1.12) rotate(-3deg);
-    color: var(--accent);
-  }
-  55% {
-    transform: translateY(4px) scale(0.98) rotate(1.2deg);
-    color: var(--accent);
-  }
-  76% {
-    transform: translateY(-2px) scale(1.01) rotate(-0.5deg);
-  }
-  100% {
-    transform: translateY(0) scale(1) rotate(0deg);
-  }
-}
-
-@keyframes letterRipple {
-  0% {
-    transform: translateY(0) scale(1) rotate(0deg);
-  }
-  28% {
-    transform: translateY(-10px) scale(1.06) rotate(-1.5deg);
-    color: var(--accent);
-  }
-  58% {
-    transform: translateY(2px) scale(0.99);
-  }
-  100% {
-    transform: translateY(0) scale(1) rotate(0deg);
-  }
-}
-
-.animate-sea-wave {
-  animation: seaWaveEntrance 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-  will-change: transform, opacity;
-}
-
-.animate-letter-wave {
-  animation: letterWave 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, color;
-}
-
-.animate-letter-ripple {
-  animation: letterRipple 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, color;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-sea-wave,
-  .animate-letter-wave,
-  .animate-letter-ripple {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-  }
-}
 
 

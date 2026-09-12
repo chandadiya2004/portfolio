@@ -3,7 +3,13 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useTheme } from '../../hooks/useTheme';
-import { Sun, Moon, Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
+
+interface NavLink {
+  label: string;
+  href: string;
+  id: string;
+}
 
 export const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -11,13 +17,12 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState<string>('home');
   const { theme, toggleTheme } = useTheme();
 
-  const navLinks = [
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Skills', href: '#skills', id: 'skills' },
-    { label: 'Experience', href: '#experience', id: 'experience' },
-    { label: 'Projects', href: '#projects', id: 'projects' },
-    { label: 'Certificates', href: '#certificates', id: 'certificates' },
+  const navLinks: NavLink[] = [
     { label: 'Research', href: '#research', id: 'research' },
+    { label: 'Systems', href: '#projects', id: 'projects' },
+    { label: 'Trajectory', href: '#experience', id: 'experience' },
+    { label: 'Skills', href: '#skills', id: 'skills' },
+    { label: 'About', href: '#about', id: 'about' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ];
 
@@ -27,17 +32,17 @@ export const Navbar = () => {
 
       const sectionIds = [
         'home',
-        'about',
-        'skills',
-        'experience',
-        'projects',
-        'certificates',
         'research',
+        'projects',
+        'experience',
+        'skills',
+        'about',
+        'certificates',
         'contact',
       ];
 
       // Near top of document
-      if (window.scrollY < 120) {
+      if (window.scrollY < 100) {
         setActiveSection('home');
         return;
       }
@@ -45,14 +50,14 @@ export const Navbar = () => {
       // Near bottom of document
       if (
         window.innerHeight + Math.round(window.scrollY) >=
-        document.documentElement.scrollHeight - 60
+        document.documentElement.scrollHeight - 80
       ) {
         setActiveSection('contact');
         return;
       }
 
-      // Viewport probe line at Y = 200px (comfortably below floating navbar)
-      const probeY = 200;
+      // Viewport probe line at Y = 180px
+      const probeY = 180;
       for (const id of sectionIds) {
         const el = document.getElementById(id);
         if (el) {
@@ -81,22 +86,31 @@ export const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Close mobile menu on ESC
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 px-2.5 sm:px-4 lg:px-6 pt-2 sm:pt-3 transition-all duration-300">
-      <div
-        className={`max-w-7xl mx-auto px-3.5 sm:px-4 lg:px-6 h-13 sm:h-14 lg:h-16 rounded-2xl flex justify-between items-center transition-all duration-300 gap-2 ${
-          scrolled
-            ? 'bg-canvas/90 dark:bg-card/95 backdrop-blur-xl border border-border-subtle dark:border-white/[0.08] shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.35)]'
-            : 'bg-canvas/75 dark:bg-canvas/80 backdrop-blur-md border border-border-subtle dark:border-white/[0.06] shadow-xs'
-        }`}
-      >
-        {/* Brand Identity */}
+    <header
+      className={`fixed top-0 inset-x-0 z-50 w-full transition-all duration-300 border-b ${
+        scrolled
+          ? 'bg-canvas/92 backdrop-blur-md border-hairline shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
+          : 'bg-canvas/80 backdrop-blur-sm border-hairline'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between">
+        {/* Brand & Monograph Identifier */}
         <a
           href="#home"
           onClick={() => setActiveSection('home')}
-          className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer select-none flex-shrink-0"
+          className="flex items-center gap-3 group cursor-pointer select-none flex-shrink-0"
         >
-          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-xl overflow-hidden border border-border-subtle dark:border-white/20 bg-surface dark:bg-white flex items-center justify-center p-0.5 sm:p-1 group-hover:border-terracotta group-hover:shadow-[0_0_12px_rgba(194,94,56,0.25)] transition-all duration-300">
+          <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-hairline bg-surface dark:bg-card flex items-center justify-center p-1 group-hover:border-terracotta transition-colors">
             <Image
               src="/images/logo.png"
               alt="Diya Chanda"
@@ -107,110 +121,122 @@ export const Navbar = () => {
             />
           </div>
 
-          <div className="flex flex-col min-w-0">
-            <div className="flex items-center gap-1.5">
-              <span className="font-serif text-base sm:text-lg lg:text-xl font-bold tracking-tight text-text-main dark:text-white group-hover:text-terracotta dark:group-hover:text-terracotta transition-colors truncate">
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <span className="font-serif text-base sm:text-lg font-bold tracking-tight text-text-main group-hover:text-terracotta transition-colors">
                 Diya Chanda
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-terracotta inline-block group-hover:scale-125 transition-transform flex-shrink-0" />
+              <span
+                className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0 animate-pulse"
+                title="Available for AI Research & Engineering"
+              />
             </div>
-            <span className="hidden 2xl:block text-[10px] font-mono text-text-sub dark:text-stone-300 tracking-wider uppercase -mt-0.5 font-medium">
+            <span className="text-[10px] sm:text-[11px] font-mono text-text-mute tracking-wider uppercase font-medium">
               AI Researcher &amp; ML Engineer
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation Links — Centered Floating Capsule (>= 1024px) */}
-        <div className="hidden lg:flex items-center justify-center flex-1 mx-2">
-          <nav className="p-1 rounded-xl bg-surface/70 dark:bg-surface/60 border border-border-subtle dark:border-white/[0.05] backdrop-blur-xs">
-            <ul className="flex items-center gap-0.5 xl:gap-1 text-xs font-medium">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
-                return (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={() => setActiveSection(link.id)}
-                      className={`px-2.5 xl:px-3.5 py-1.5 rounded-lg transition-all duration-200 relative font-mono text-xs xl:text-[13px] inline-flex items-center justify-center font-medium select-none cursor-pointer whitespace-nowrap ${
+        {/* Desktop Monograph Navigation Indices (>= 1024px) */}
+        <nav
+          aria-label="Main Navigation"
+          className="hidden lg:flex items-center justify-center flex-1 mx-6"
+        >
+          <ul className="flex items-center gap-1 xl:gap-2">
+            {navLinks.map((link, idx) => {
+              const isActive = activeSection === link.id;
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setActiveSection(link.id)}
+                    className={`relative px-3 py-2 text-xs font-mono transition-colors inline-flex items-center gap-1.5 select-none cursor-pointer group ${
+                      isActive
+                        ? 'text-terracotta font-semibold'
+                        : 'text-text-sub hover:text-text-main font-normal'
+                    }`}
+                  >
+                    <span
+                      className={`text-[10px] font-mono transition-colors ${
                         isActive
-                          ? 'bg-card text-terracotta dark:bg-[#2A2622] dark:text-white shadow-xs border border-border-subtle dark:border-white/[0.12] font-semibold'
-                          : 'text-text-main/80 dark:text-stone-200 hover:text-text-main dark:hover:text-white hover:bg-card/50 dark:hover:bg-white/[0.06] border border-transparent'
+                          ? 'text-terracotta'
+                          : 'text-text-mute group-hover:text-terracotta/70'
                       }`}
                     >
-                      <span>{link.label}</span>
-                      {isActive && (
-                        <span className="ml-1.5 w-1.5 h-1.5 rounded-full bg-terracotta shadow-[0_0_6px_rgba(212,130,106,0.8)] animate-pulse flex-shrink-0" />
-                      )}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </div>
+                      §0{idx + 1}
+                    </span>
+                    <span>{link.label}</span>
+                    {isActive && (
+                      <span className="absolute bottom-0 inset-x-3 h-[2px] bg-terracotta rounded-full" />
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
         {/* Desktop Right Action Cluster (>= 1024px) */}
-        <div className="hidden lg:flex items-center gap-2.5 xl:gap-3 flex-shrink-0">
-          {/* Quick Resume Link */}
+        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+          {/* Quick Curriculum Vitae Link */}
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             download="Diya_Chanda_Resume.pdf"
-            className="inline-flex items-center gap-1.5 px-3 xl:px-3.5 py-1.5 rounded-xl bg-surface hover:bg-card border border-border-subtle dark:border-white/[0.08] hover:border-terracotta dark:hover:border-terracotta text-text-main dark:text-white hover:text-terracotta dark:hover:text-terracotta text-xs font-mono font-medium shadow-xs transition-all duration-200 group flex-shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-hairline hover:border-terracotta bg-surface dark:bg-card text-text-main hover:text-terracotta text-xs font-mono font-medium transition-colors group"
           >
-            <span>Resume</span>
+            <span>CV</span>
             <ArrowUpRight
               size={13}
-              className="text-terracotta group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0"
+              className="text-terracotta group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
             />
           </a>
 
-          <div className="w-px h-5 bg-border-subtle dark:bg-white/[0.08]" />
+          <div className="w-px h-4 bg-border-hairline" />
 
           {/* Theme Switcher Toggle */}
           <button
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="p-2 rounded-xl border border-border-subtle dark:border-white/[0.08] bg-surface hover:bg-card hover:border-terracotta dark:hover:border-terracotta text-text-main dark:text-white hover:text-terracotta transition-all shadow-xs cursor-pointer flex-shrink-0"
+            className="p-2 rounded-md border border-hairline hover:border-terracotta bg-surface dark:bg-card text-text-sub hover:text-text-main transition-colors cursor-pointer"
           >
             {theme === 'dark' ? (
-              <Sun size={16} className="stroke-[2.2] text-amber-400" />
+              <Sun size={15} className="text-amber-400" />
             ) : (
-              <Moon size={16} className="stroke-[2.2] text-terracotta" />
+              <Moon size={15} className="text-terracotta" />
             )}
           </button>
         </div>
 
-        {/* Mobile & Tablet Actions Button Cluster (< 1024px) */}
-        <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden flex-shrink-0">
-          {/* Quick Resume link on tablets */}
+        {/* Mobile & Tablet Actions Cluster (< 1024px) */}
+        <div className="flex items-center gap-2 lg:hidden flex-shrink-0">
           <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             download="Diya_Chanda_Resume.pdf"
-            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-surface hover:bg-card border border-border-subtle dark:border-white/[0.08] text-text-main dark:text-white text-xs font-mono font-medium transition-colors"
+            className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-hairline bg-surface dark:bg-card text-text-main text-xs font-mono font-medium"
           >
-            <span>Resume</span>
+            <span>CV</span>
             <ArrowUpRight size={12} className="text-terracotta" />
           </a>
 
           <button
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className="p-2 rounded-xl border border-border-subtle dark:border-white/[0.08] bg-surface text-text-main dark:text-white hover:text-terracotta transition-colors cursor-pointer"
+            className="p-2 rounded-md border border-hairline bg-surface dark:bg-card text-text-sub hover:text-text-main transition-colors cursor-pointer"
           >
             {theme === 'dark' ? (
-              <Sun size={16} className="text-amber-400" />
+              <Sun size={15} className="text-amber-400" />
             ) : (
-              <Moon size={16} className="text-terracotta" />
+              <Moon size={15} className="text-terracotta" />
             )}
           </button>
 
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 rounded-xl border border-border-subtle dark:border-white/[0.08] bg-surface text-text-main dark:text-white hover:border-terracotta transition-colors cursor-pointer"
+            className="p-2 rounded-md border border-hairline bg-surface dark:bg-card text-text-main hover:border-terracotta transition-colors cursor-pointer"
             aria-label="Toggle navigation menu"
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
@@ -220,14 +246,17 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile & Tablet Glass Navigation Drawer */}
+      {/* Mobile & Tablet Full-Bleed Navigation Drawer */}
       {open && (
         <div
           id="mobile-nav-drawer"
-          className="lg:hidden max-w-7xl mx-auto mt-2 bg-card/95 backdrop-blur-xl border border-border-subtle dark:border-white/[0.08] rounded-2xl p-4 sm:p-5 transition-all shadow-2xl animate-fadeIn max-h-[calc(100vh-4.5rem)] overflow-y-auto no-scrollbar"
+          className="lg:hidden border-t border-hairline bg-canvas/98 backdrop-blur-xl px-5 py-6 transition-all shadow-xl animate-fadeIn max-h-[calc(100vh-4rem)] overflow-y-auto"
         >
-          <ul className="flex flex-col gap-1.5 text-sm font-medium text-text-main dark:text-white font-mono">
-            {navLinks.map((link) => {
+          <div className="text-[10px] font-mono text-text-mute uppercase tracking-widest mb-3 px-2">
+            Table of Contents
+          </div>
+          <ul className="flex flex-col text-sm font-mono divide-y divide-hairline">
+            {navLinks.map((link, idx) => {
               const isActive = activeSection === link.id;
               return (
                 <li key={link.href}>
@@ -237,40 +266,38 @@ export const Navbar = () => {
                       setActiveSection(link.id);
                       setOpen(false);
                     }}
-                    className={`flex items-center justify-between p-2.5 rounded-xl transition-all ${
+                    className={`flex items-center justify-between py-3.5 px-2 transition-colors ${
                       isActive
-                        ? 'bg-surface text-terracotta dark:text-white font-semibold border border-border-subtle dark:border-white/[0.08] shadow-xs'
-                        : 'text-text-main/80 dark:text-stone-200 hover:bg-surface hover:text-text-main dark:hover:text-white'
+                        ? 'text-terracotta font-semibold'
+                        : 'text-text-sub hover:text-text-main'
                     }`}
                   >
-                    <span className="flex items-center gap-2.5">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full bg-terracotta transition-opacity ${
-                          isActive ? 'opacity-100' : 'opacity-0'
-                        }`}
-                      />
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs text-text-mute font-mono">
+                        §0{idx + 1}
+                      </span>
                       <span>{link.label}</span>
-                    </span>
-                    <span className="text-xs text-text-mute font-sans">→</span>
+                    </div>
+                    <span className="text-xs text-text-mute">→</span>
                   </a>
                 </li>
               );
             })}
-            <li className="pt-2.5 border-t border-border-subtle dark:border-white/[0.08] mt-1.5">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                download="Diya_Chanda_Resume.pdf"
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 p-2.5 rounded-xl bg-terracotta hover:bg-terracotta-hover text-white font-medium text-xs font-mono text-center shadow-xs transition-colors"
-              >
-                <Sparkles size={14} />
-                <span>Download Resume / CV</span>
-                <ArrowUpRight size={14} />
-              </a>
-            </li>
           </ul>
+
+          <div className="pt-5 mt-4 border-t border-hairline">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Diya_Chanda_Resume.pdf"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-md border border-terracotta bg-terracotta/10 text-terracotta hover:bg-terracotta hover:text-white font-medium text-xs font-mono transition-colors"
+            >
+              <span>Download Curriculum Vitae (PDF)</span>
+              <ArrowUpRight size={14} />
+            </a>
+          </div>
         </div>
       )}
     </header>

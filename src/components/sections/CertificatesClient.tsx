@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo, ReactNode } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import {
   Award,
@@ -10,11 +10,8 @@ import {
   Briefcase,
   Eye,
   X,
-  Calendar,
   Building2,
-  Sparkles,
-  ChevronDown,
-  ChevronUp,
+  Calendar,
 } from 'lucide-react';
 
 interface CertificateItem {
@@ -48,127 +45,40 @@ const certificateImages: Record<number, string> = {
   7: '/images/certificates/Xeta_Labs_certificate.webp',
 };
 
-const certCategoryIconMap: Record<string, ReactNode> = {
-  'Research & Presentation': <FileText size={16} className="text-terracotta" />,
-  'Hackathons & Competitions': <Trophy size={16} className="text-terracotta" />,
-  'Academic Honors': <Award size={16} className="text-terracotta" />,
-  'Advanced Training': <Award size={16} className="text-terracotta" />,
-  'Cloud & Infrastructure': <Cloud size={16} className="text-terracotta" />,
-  'Industry Internships': <Briefcase size={16} className="text-terracotta" />,
+const categoryIcon = (category: string) => {
+  if (category.includes('Presentation') || category.includes('Research')) {
+    return <FileText size={14} className="text-terracotta" />;
+  }
+  if (category.includes('Hackathon') || category.includes('Competition')) {
+    return <Trophy size={14} className="text-terracotta" />;
+  }
+  if (category.includes('Cloud')) {
+    return <Cloud size={14} className="text-terracotta" />;
+  }
+  if (category.includes('Internship')) {
+    return <Briefcase size={14} className="text-terracotta" />;
+  }
+  return <Award size={14} className="text-terracotta" />;
 };
-
-type FilterCategory = 'all' | 'research-honors' | 'internships' | 'training';
 
 export const CertificatesClient = ({
   heading,
-  eyebrow,
   description,
   certificates,
 }: CertificatesClientProps) => {
-  const [activeTab, setActiveTab] = useState<FilterCategory>('all');
   const [selectedCert, setSelectedCert] = useState<CertificateItem | null>(null);
-  const [showAllCerts, setShowAllCerts] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
-
-  const allFilteredCertificates = useMemo(() => {
-    if (activeTab === 'research-honors') {
-      return certificates.filter(
-        (c) =>
-          c.category === 'Research & Presentation' ||
-          c.category === 'Hackathons & Competitions' ||
-          c.category === 'Academic Honors'
-      );
-    }
-    if (activeTab === 'internships') {
-      return certificates.filter((c) => c.category === 'Industry Internships');
-    }
-    if (activeTab === 'training') {
-      return certificates.filter(
-        (c) =>
-          c.category === 'Cloud & Infrastructure' ||
-          c.category === 'Advanced Training'
-      );
-    }
-    return certificates;
-  }, [activeTab, certificates]);
-
-  const displayedCertificates = useMemo(() => {
-    if (activeTab === 'all' && !showAllCerts) {
-      return allFilteredCertificates.slice(0, 4);
-    }
-    return allFilteredCertificates;
-  }, [activeTab, showAllCerts, allFilteredCertificates]);
-
-  const tabs = [
-    { id: 'all' as FilterCategory, label: 'All Credentials', count: certificates.length },
-    {
-      id: 'research-honors' as FilterCategory,
-      label: 'Research & Honors',
-      count: certificates.filter(
-        (c) =>
-          c.category === 'Research & Presentation' ||
-          c.category === 'Hackathons & Competitions' ||
-          c.category === 'Academic Honors'
-      ).length,
-    },
-    {
-      id: 'internships' as FilterCategory,
-      label: 'Industry Internships',
-      count: certificates.filter((c) => c.category === 'Industry Internships').length,
-    },
-    {
-      id: 'training' as FilterCategory,
-      label: 'Cloud & Training',
-      count: certificates.filter(
-        (c) =>
-          c.category === 'Cloud & Infrastructure' ||
-          c.category === 'Advanced Training'
-      ).length,
-    },
-  ];
 
   useEffect(() => {
     if (selectedCert) {
-      previousFocusRef.current = document.activeElement as HTMLElement;
       document.body.style.overflow = 'hidden';
-
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          setSelectedCert(null);
-          return;
-        }
-
-        if (e.key === 'Tab' && modalRef.current) {
-          const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          );
-          if (focusableElements.length === 0) return;
-
-          const firstElement = focusableElements[0];
-          const lastElement = focusableElements[focusableElements.length - 1];
-
-          if (e.shiftKey) {
-            if (document.activeElement === firstElement) {
-              lastElement.focus();
-              e.preventDefault();
-            }
-          } else {
-            if (document.activeElement === lastElement) {
-              firstElement.focus();
-              e.preventDefault();
-            }
-          }
-        }
+        if (e.key === 'Escape') setSelectedCert(null);
       };
-
       window.addEventListener('keydown', handleKeyDown);
       return () => {
         window.removeEventListener('keydown', handleKeyDown);
         document.body.style.overflow = 'unset';
-        if (previousFocusRef.current) {
-          previousFocusRef.current.focus();
-        }
       };
     }
   }, [selectedCert]);
@@ -176,226 +86,167 @@ export const CertificatesClient = ({
   return (
     <section
       id="certificates"
-      className="py-16 sm:py-24 px-3.5 sm:px-6 border-t border-border-subtle bg-surface/30 transition-colors w-full max-w-full overflow-hidden"
+      className="py-16 sm:py-24 border-t border-hairline transition-colors w-full max-w-full overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <p className="text-xs font-mono uppercase tracking-widest text-terracotta font-semibold mb-2 flex items-center justify-center gap-1.5">
-            <Sparkles size={14} />
-            <span>{eyebrow || 'Credentials & Honors'}</span>
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
-            {heading}
-          </h2>
-          <div className="w-12 h-0.5 bg-terracotta mx-auto mb-4" />
-          <p className="text-text-sub text-xs sm:text-base md:text-lg leading-relaxed text-justify px-1 sm:px-2">
-            {description ||
-              'Verified academic presentations, hackathon awards, cloud certifications, and industry engineering credentials.'}
-          </p>
-        </div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-10 sm:mb-14 border-b border-hairline gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-2 text-xs font-mono text-terracotta tracking-wider uppercase font-semibold">
+              <span>§ Academic Honors</span>
+              <span className="text-border-hairline font-sans">·</span>
+              <span className="text-text-mute font-normal">Verified Accreditations &amp; Awards</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight">
+              {heading}
+            </h2>
+          </div>
 
-        {/* Mobile Horizontal Scrollable Filter Tabs */}
-        <div className="w-full flex justify-start sm:justify-center mb-8 sm:mb-12 overflow-x-auto no-scrollbar py-1 px-1">
-          <div className="inline-flex sm:flex sm:flex-wrap items-center gap-1 sm:gap-1.5 p-1 rounded-xl bg-surface border border-border-subtle shadow-xs">
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    if (tab.id !== 'all') setShowAllCerts(true);
-                  }}
-                  className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-mono font-medium transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer whitespace-nowrap focus:outline-none select-none border ${
-                    isActive
-                      ? 'bg-card text-terracotta font-bold shadow-xs border-border-subtle'
-                      : 'border-transparent text-text-mute hover:text-text-main hover:bg-card/50'
-                  }`}
-                >
-                  <span>{tab.label}</span>
-                  <span
-                    className={`px-1.5 py-0.5 rounded text-[10px] ${
-                      isActive
-                        ? 'bg-terracotta/15 text-terracotta'
-                        : 'bg-surface/80 text-text-mute'
-                    }`}
-                  >
-                    {tab.count}
-                  </span>
-                </button>
-              );
-            })}
+          <div className="font-mono text-xs text-text-mute md:text-right max-w-sm">
+            <span className="text-text-main font-semibold block text-sm">
+              0{certificates.length} Verified Accreditations
+            </span>
+            <span className="leading-tight block mt-0.5">
+              {description || 'IEEE presentations, hackathon awards, cloud foundations, and research merit.'}
+            </span>
           </div>
         </div>
 
-        {/* Certificates Grid */}
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 w-full">
-          {displayedCertificates.map((cert) => {
+        {/* Archival Grid of All 7 Certificates */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {certificates.map((cert) => {
+            const certImg = certificateImages[cert.id];
+
             return (
               <article
                 key={cert.id}
-                className="bg-card border border-border-subtle hover:border-terracotta/40 rounded-2xl p-4 sm:p-7 shadow-sm flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 hover:shadow-md w-full min-w-0"
+                className="p-5 sm:p-6 rounded-lg border border-hairline bg-surface/40 dark:bg-card/40 hover:bg-surface dark:hover:bg-card hover:border-terracotta/50 transition-all flex flex-col justify-between group"
               >
                 <div>
-                  
-                  {/* Meta Header */}
-                  <div className="flex items-center justify-between gap-2.5 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-border-subtle/70">
-                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-                      <span className="p-1.5 sm:p-2 rounded-lg bg-surface border border-border-subtle flex-shrink-0">
-                        {certCategoryIconMap[cert.category] || (
-                          <Award size={15} className="text-terracotta" />
-                        )}
-                      </span>
-                      <span className="text-[11px] sm:text-xs font-mono text-terracotta font-semibold truncate">
-                        {cert.category}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-                      <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-text-mute">
-                        <Calendar size={12} className="opacity-70" />
-                        <span>{cert.year}</span>
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] font-mono text-text-mute px-1.5 sm:px-2 py-0.5 bg-surface rounded border border-border-subtle">
-                        0{cert.id}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-serif text-base sm:text-xl lg:text-2xl font-bold text-text-main mb-1.5 group-hover:text-terracotta transition-colors leading-snug break-words">
-                    {cert.title}
-                  </h3>
-
-                  {/* Context Subtitle */}
-                  {cert.article && (
-                    <p className="text-terracotta font-serif italic text-xs sm:text-sm mb-2 leading-relaxed break-words">
-                      "{cert.article}"
-                    </p>
-                  )}
-                  {cert.event && (
-                    <p className="text-text-sub font-medium text-xs mb-2 break-words">
-                      Event: {cert.event}
-                    </p>
-                  )}
-                  {cert.program && (
-                    <p className="text-text-sub font-medium text-xs mb-2 break-words">
-                      Program: {cert.program}
-                    </p>
-                  )}
-
-                  {/* Issuer details */}
-                  <div className="flex items-center gap-1.5 text-xs text-text-mute mb-3 font-medium">
-                    <Building2 size={13} className="text-terracotta flex-shrink-0" />
-                    <span className="break-words leading-tight">
-                      {cert.issuer}
-                      {cert.position ? ` · ${cert.position}` : ''}
+                  {/* Category & Year Header */}
+                  <div className="flex items-center justify-between pb-3 mb-3.5 border-b border-hairline text-[11px] font-mono">
+                    <span className="inline-flex items-center gap-1.5 text-terracotta font-semibold uppercase tracking-wider">
+                      {categoryIcon(cert.category)}
+                      <span>{cert.category}</span>
+                    </span>
+                    <span className="text-text-mute flex items-center gap-1">
+                      <Calendar size={11} className="opacity-70" />
+                      <span>{cert.year}</span>
                     </span>
                   </div>
 
-                  {/* Constructive Description */}
-                  <p className="text-text-sub text-xs sm:text-sm leading-relaxed mb-4 text-justify">
-                    {cert.description}
+                  {/* Document Viewport Plate */}
+                  {certImg && (
+                    <button
+                      onClick={() => setSelectedCert(cert)}
+                      className="relative aspect-[16/10] w-full overflow-hidden rounded border border-hairline bg-canvas mb-4 group/img cursor-pointer text-left block"
+                      aria-label={`Inspect ${cert.title} certificate`}
+                    >
+                      <Image
+                        src={certImg}
+                        alt={`${cert.title} — ${cert.issuer}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 360px"
+                        className="object-cover object-center group-hover/img:scale-[1.03] transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 transition-colors flex items-center justify-center">
+                        <span className="opacity-0 group-hover/img:opacity-100 transition-opacity bg-canvas/90 backdrop-blur-md px-3 py-1.5 rounded text-xs font-mono font-medium text-text-main flex items-center gap-1.5 border border-hairline shadow-sm">
+                          <Eye size={12} className="text-terracotta" />
+                          <span>Inspect Document</span>
+                        </span>
+                      </div>
+                    </button>
+                  )}
+
+                  {/* Title & Issuer */}
+                  <h3 className="font-serif text-lg font-bold text-text-main group-hover:text-terracotta transition-colors leading-snug">
+                    {cert.title}
+                  </h3>
+
+                  <p className="font-mono text-xs text-text-mute font-medium mt-1 flex items-center gap-1.5">
+                    <Building2 size={12} className="text-terracotta flex-shrink-0" />
+                    <span className="truncate">{cert.issuer}</span>
                   </p>
 
-                  {/* Skills Tags */}
-                  {cert.skills && cert.skills.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-5 w-full">
-                      {cert.skills.map((skill, idx) => (
-                        <span
-                          key={idx}
-                          className="text-[10px] sm:text-[11px] font-mono bg-surface border border-border-subtle text-text-sub px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md max-w-full break-words"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+                  {/* Article or Program detail */}
+                  {cert.article && (
+                    <p className="font-mono text-[11px] text-text-sub mt-2 border-l border-terracotta/40 pl-2 italic">
+                      &ldquo;{cert.article}&rdquo;
+                    </p>
                   )}
+
+                  {/* Description */}
+                  <p className="text-xs text-text-sub font-sans leading-relaxed mt-3">
+                    {cert.description}
+                  </p>
                 </div>
 
-                {/* View Scan Button */}
-                {certificateImages[cert.id] && (
-                  <button
-                    onClick={() => setSelectedCert(cert)}
-                    className="w-full mt-2 inline-flex items-center justify-center gap-2 py-2 sm:py-2.5 px-4 rounded-lg bg-surface hover:bg-card border border-border hover:border-terracotta/40 text-text-main hover:text-terracotta text-xs font-medium shadow-xs transition-colors cursor-pointer"
-                  >
-                    <Eye size={14} className="text-terracotta" />
-                    <span>View Verified Document Scan</span>
-                  </button>
-                )}
+                {/* Skills Chips */}
+                <div className="pt-4 mt-5 border-t border-hairline/60 flex flex-wrap gap-1.5">
+                  {cert.skills.map((skill, sIdx) => (
+                    <span
+                      key={sIdx}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded border border-hairline bg-canvas/80 text-text-mute font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </article>
             );
           })}
         </div>
 
-        {/* See More Certificates Toggle */}
-        {activeTab === 'all' && allFilteredCertificates.length > 4 && (
-          <div className="flex justify-center mb-6">
-            <button
-              onClick={() => setShowAllCerts(!showAllCerts)}
-              className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-surface hover:bg-card border border-border hover:border-terracotta/50 text-text-main hover:text-terracotta text-xs sm:text-sm font-mono font-medium shadow-xs transition-all duration-200 cursor-pointer"
-            >
-              <span>
-                {showAllCerts
-                  ? 'Collapse Credentials'
-                  : `See All Credentials (${allFilteredCertificates.length - 4} more)`}
-              </span>
-              {showAllCerts ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
-          </div>
-        )}
-
       </div>
 
-      {/* Accessible Lightbox Modal */}
+      {/* High-Resolution Document Inspection Lightbox */}
       {selectedCert && (
         <div
           onClick={() => setSelectedCert(null)}
           role="dialog"
           aria-modal="true"
-          aria-labelledby="cert-modal-title"
-          className="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-6 animate-fadeIn"
+          className="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
         >
           <div
             ref={modalRef}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl max-h-[92vh] bg-card border border-border rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-6 flex flex-col"
+            className="relative max-w-4xl w-full max-h-[90vh] bg-card border border-hairline rounded-lg overflow-hidden shadow-2xl p-4 sm:p-6 flex flex-col"
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-border-subtle">
-              <div className="min-w-0 pr-3">
-                <h3 id="cert-modal-title" className="font-serif text-base sm:text-xl font-bold text-text-main truncate">
+            {/* Header */}
+            <div className="flex items-start justify-between pb-3 mb-3 border-b border-hairline gap-3">
+              <div>
+                <span className="text-[10px] font-mono text-terracotta uppercase tracking-wider block">
+                  Verified Academic Accreditation
+                </span>
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-text-main">
                   {selectedCert.title}
                 </h3>
-                <p className="text-[11px] sm:text-xs font-mono text-text-mute mt-0.5 truncate">
-                  Issued by {selectedCert.issuer} · {selectedCert.year}
+                <p className="font-mono text-xs text-text-mute mt-0.5">
+                  {selectedCert.issuer} · {selectedCert.year}
                 </p>
               </div>
 
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedCert(null)}
-                autoFocus
-                aria-label="Close document modal"
-                className="p-1.5 rounded-lg border border-border hover:border-terracotta text-text-sub hover:text-terracotta bg-surface transition-colors cursor-pointer flex-shrink-0"
+                className="p-1.5 rounded border border-hairline bg-surface hover:border-terracotta text-text-sub hover:text-text-main transition-colors cursor-pointer"
+                aria-label="Close document inspection"
               >
-                <X size={18} />
+                <X size={16} />
               </button>
             </div>
 
-            {/* Certificate Image Scan via next/image */}
-            <div data-lenis-prevent className="overflow-y-auto rounded-lg bg-surface/50 border border-border-subtle p-2 flex items-center justify-center">
-              <div className="relative w-full h-[55vh] sm:h-[65vh]">
+            {/* Certificate Image Frame */}
+            <div className="relative flex-1 min-h-[300px] sm:min-h-[480px] w-full bg-canvas/40 rounded border border-hairline overflow-hidden flex items-center justify-center">
+              {certificateImages[selectedCert.id] && (
                 <Image
                   src={certificateImages[selectedCert.id]}
-                  alt={`${selectedCert.title} — Verified Credential Scan issued by ${selectedCert.issuer}`}
+                  alt={selectedCert.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 800px"
-                  className="object-contain rounded"
+                  className="object-contain p-2"
+                  priority
                 />
-              </div>
+              )}
             </div>
           </div>
         </div>

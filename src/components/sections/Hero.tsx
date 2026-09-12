@@ -1,15 +1,12 @@
+import Image from 'next/image';
 import heroData from '../../data/sections/hero.json';
 import researchData from '../../data/sections/research.json';
-import certificatesData from '../../data/sections/certificates.json';
 import projectsData from '../../data/sections/projects.json';
-import TypingSubtitle from '../home/TypingSubtitle';
-import { WaveTitle } from '../home/WaveTitle';
-import { ArrowUpRight, Mail, FileDown, BookOpen, Award, FolderGit2, Sparkles } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, FileDown, BookOpen, Award, FolderGit2, Sparkles } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, ResearchGateIcon } from '../common/Icons';
 
 export const Hero = () => {
   const papersCount = researchData.papers.length;
-  const certsCount = certificatesData.certificates.length;
   const projectsCount = projectsData.projects.length;
 
   const socials = heroData.socials || {
@@ -21,149 +18,245 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[90vh] flex flex-col justify-center items-center px-3.5 sm:px-6 pt-20 sm:pt-32 pb-12 sm:pb-20 transition-colors w-full max-w-full overflow-hidden"
+      className="relative pt-24 sm:pt-32 pb-14 sm:pb-20 transition-colors w-full max-w-full overflow-hidden"
     >
-      <div className="relative z-10 max-w-5xl mx-auto w-full text-center flex flex-col items-center">
-        
-        {/* Top Eyebrow Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-5 sm:mb-8 max-w-full">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-surface border border-border-subtle text-[10px] sm:text-xs font-mono font-medium text-text-sub shadow-xs">
-            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
-            <span className="truncate">Open for AI Research &amp; Engineering</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Asymmetric Monograph Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
+          
+          {/* Left Column: Monograph Narrative & Credentials (7 cols lg, 8 cols xl) */}
+          <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
+            
+            {/* Monograph Chapter & Availability Marker */}
+            <div className="flex flex-wrap items-center gap-2 mb-3.5 sm:mb-4">
+              <span className="text-[11px] font-mono text-terracotta tracking-wider uppercase font-semibold">
+                § 00 // Monograph 2026
+              </span>
+              <span className="text-border-hairline font-sans text-xs">·</span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface dark:bg-card border border-hairline text-[10px] sm:text-[11px] font-mono text-text-sub">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+                <span>Available for AI Research &amp; Engineering</span>
+              </div>
+            </div>
+
+            {/* Editorial Title */}
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight text-text-main leading-[1.02] mb-2.5">
+              {heroData.name}
+            </h1>
+
+            {/* Disciplines & Academic Stance */}
+            <p className="font-mono text-xs sm:text-[13px] text-text-sub mb-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <span className="text-terracotta font-medium">B.Tech CSE (AI &amp; ML)</span>
+              <span className="text-border-hairline font-sans">|</span>
+              <span>The Neotia University (9.48 CGPA)</span>
+              <span className="text-border-hairline font-sans">|</span>
+              <span className="text-text-main font-medium">IEEE &amp; Springer Author</span>
+            </p>
+
+            {/* Editorial Serif Quotation / Stance */}
+            <div className="border-l-2 border-terracotta/70 pl-4 sm:pl-5 my-2.5 sm:my-3 py-1">
+              <p className="text-sm sm:text-base md:text-lg text-text-main font-serif italic leading-snug">
+                &ldquo;Bridging empirical deep learning research with production systems engineering—specializing in explainable AI, multi-task vision architectures, and grounded RAG pipelines.&rdquo;
+              </p>
+            </div>
+
+            {/* Technical Narrative Prose */}
+            <p className="text-xs sm:text-[13px] text-text-sub leading-relaxed max-w-2xl my-3 sm:my-4">
+              {heroData.description}
+            </p>
+
+            {/* Primary Action Suite */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1 mb-5 sm:mb-6">
+              <a
+                href="#research"
+                className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-hover text-white font-mono text-xs font-medium px-4 py-2.5 rounded-md shadow-xs transition-colors group"
+              >
+                <span>Read Selected Research</span>
+                <ArrowDownRight size={14} className="group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform" />
+              </a>
+
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 bg-surface dark:bg-card hover:bg-card border border-hairline hover:border-terracotta text-text-main hover:text-terracotta font-mono text-xs font-medium px-4 py-2.5 rounded-md transition-colors"
+              >
+                <span>Inspect Applied Systems</span>
+                <ArrowUpRight size={14} />
+              </a>
+
+              <a
+                href={heroData.resumeUrl || '/resume.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Diya_Chanda_Resume.pdf"
+                className="inline-flex items-center gap-1.5 bg-surface dark:bg-card hover:bg-card border border-hairline hover:border-terracotta text-text-sub hover:text-terracotta font-mono text-xs font-medium px-3.5 py-2.5 rounded-md transition-colors"
+              >
+                <FileDown size={14} className="text-terracotta" />
+                <span>Curriculum Vitae</span>
+              </a>
+            </div>
+
+            {/* Quick Scholarly Directories */}
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-text-sub pt-0.5">
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-wider text-text-mute font-semibold">
+                Scholarly Indices:
+              </span>
+              <a
+                href={socials.researchgate}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-text-sub hover:text-terracotta transition-colors group"
+              >
+                <ResearchGateIcon size={14} className="text-text-mute group-hover:text-terracotta transition-colors" />
+                <span>ResearchGate</span>
+              </a>
+              <span className="text-border-hairline font-sans">·</span>
+              <a
+                href={socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-text-sub hover:text-terracotta transition-colors group"
+              >
+                <GithubIcon size={14} className="text-text-mute group-hover:text-terracotta transition-colors" />
+                <span>GitHub</span>
+              </a>
+              <span className="text-border-hairline font-sans">·</span>
+              <a
+                href={socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-text-sub hover:text-terracotta transition-colors group"
+              >
+                <LinkedinIcon size={14} className="text-text-mute group-hover:text-terracotta transition-colors" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
           </div>
 
-          <div className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-surface border border-border-subtle text-[10px] sm:text-xs font-mono font-medium text-terracotta shadow-xs">
-            <Sparkles size={11} className="flex-shrink-0" />
-            <span>B.Tech CSE (AI &amp; ML)</span>
+          {/* Right Column: Photographic Plate & Dossier Ledger (Aligned with Left Column Height) */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-2.5 w-full max-w-[260px] sm:max-w-[280px] lg:max-w-[270px] xl:max-w-[280px] mx-auto lg:ml-auto">
+            
+            {/* Photographic Plate with Archival Registration Marks */}
+            <div className="relative p-2 bg-surface dark:bg-card border border-hairline rounded-lg shadow-xs group">
+              {/* Corner Registration Marks (Monograph Style) */}
+              <span className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-terracotta" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 border-t-2 border-r-2 border-terracotta" />
+              <span className="absolute -bottom-1 -left-1 w-2 h-2 border-b-2 border-l-2 border-terracotta" />
+              <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-terracotta" />
+
+              {/* Framed Square Portrait Image (Full Head & Face Unclipped) */}
+              <div className="relative aspect-square w-full overflow-hidden rounded border border-hairline bg-canvas/50">
+                <Image
+                  src="/images/profile-square.png"
+                  alt="Diya Chanda — AI Researcher & Machine Learning Engineer"
+                  fill
+                  priority
+                  sizes="280px"
+                  className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
+                />
+              </div>
+
+              {/* Plate Caption */}
+              <div className="flex items-center justify-between text-[10px] font-mono text-text-mute uppercase tracking-wider pt-2 px-0.5">
+                <span>Plate 01 // Diya Chanda</span>
+                <span>Kolkata, IN</span>
+              </div>
+            </div>
+
+            {/* Structured Dossier Ledger */}
+            <div className="border border-hairline rounded-lg p-2.5 sm:p-3 bg-surface/60 dark:bg-card/60 font-mono text-[11px] divide-y divide-hairline">
+              <div className="flex justify-between items-center py-1">
+                <span className="text-text-mute">Seat</span>
+                <span className="text-text-main font-medium text-right truncate ml-2">The Neotia Univ.</span>
+              </div>
+              <div className="flex justify-between items-center py-1">
+                <span className="text-text-mute">CGPA</span>
+                <span className="text-terracotta font-semibold">9.48 / 10.0</span>
+              </div>
+              <div className="flex justify-between items-center py-1">
+                <span className="text-text-mute">Papers</span>
+                <span className="text-text-main font-medium">4 (IEEE &amp; Springer)</span>
+              </div>
+              <div className="flex justify-between items-center py-1">
+                <span className="text-text-mute">Focus</span>
+                <span className="text-text-main font-medium text-right truncate ml-2">XAI · Vision · RAG</span>
+              </div>
+            </div>
+
           </div>
+
         </div>
 
-        {/* Extra Large Centered Editorial Name */}
-        <h1 className="font-serif text-3xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight text-text-main leading-[1.05] sm:leading-[0.95] mb-4 sm:mb-6 select-none max-w-full break-words">
-          <WaveTitle text={heroData.name} />
-        </h1>
+        {/* Bottom Monograph Telemetry Rule & Benchmark Strip */}
+        <div className="mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-hairline">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            
+            <a
+              href="#research"
+              className="p-4 rounded-lg border border-hairline bg-surface/40 dark:bg-card/40 hover:bg-surface hover:border-terracotta/50 transition-all group"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <BookOpen size={16} className="text-terracotta" />
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-text-main group-hover:text-terracotta transition-colors">
+                  0{papersCount}
+                </span>
+              </div>
+              <p className="text-xs font-mono text-text-sub font-medium">
+                Published Papers
+              </p>
+              <span className="text-[10px] font-mono text-text-mute block mt-0.5">
+                IEEE ICRITO &amp; Springer LNNS
+              </span>
+            </a>
 
-        {/* Dynamic Typing Subtitle */}
-        <div className="mb-5 sm:mb-6 min-h-[26px] sm:min-h-[28px] flex items-center justify-center max-w-full px-2">
-          <div className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-surface/80 border border-border-subtle shadow-xs max-w-full">
-            <TypingSubtitle />
+            <div className="p-4 rounded-lg border border-hairline bg-surface/40 dark:bg-card/40">
+              <div className="flex items-center gap-2 mb-1">
+                <Award size={16} className="text-terracotta" />
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-text-main">
+                  9.48
+                </span>
+              </div>
+              <p className="text-xs font-mono text-text-sub font-medium">
+                Academic CGPA
+              </p>
+              <span className="text-[10px] font-mono text-text-mute block mt-0.5">
+                The Neotia University
+              </span>
+            </div>
+
+            <div className="p-4 rounded-lg border border-hairline bg-surface/40 dark:bg-card/40">
+              <div className="flex items-center gap-2 mb-1">
+                <Sparkles size={16} className="text-terracotta" />
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-text-main">
+                  99%
+                </span>
+              </div>
+              <p className="text-xs font-mono text-text-sub font-medium">
+                Diagnostic Accuracy
+              </p>
+              <span className="text-[10px] font-mono text-text-mute block mt-0.5">
+                Multi-Headed CNN + Grad-CAM
+              </span>
+            </div>
+
+            <a
+              href="#projects"
+              className="p-4 rounded-lg border border-hairline bg-surface/40 dark:bg-card/40 hover:bg-surface hover:border-terracotta/50 transition-all group"
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <FolderGit2 size={16} className="text-terracotta" />
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-text-main group-hover:text-terracotta transition-colors">
+                  0{projectsCount}+
+                </span>
+              </div>
+              <p className="text-xs font-mono text-text-sub font-medium">
+                Engineered Systems
+              </p>
+              <span className="text-[10px] font-mono text-text-mute block mt-0.5">
+                Full-Stack RAG &amp; Vision
+              </span>
+            </a>
+
           </div>
-        </div>
-
-        {/* Editorial Bio */}
-        <p className="text-text-sub text-xs sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-10 font-normal px-2">
-          {heroData.description}
-        </p>
-
-        {/* Main CTA Actions */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-10 w-full max-w-xs sm:max-w-none">
-          <a
-            href="#projects"
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-terracotta hover:bg-terracotta-hover text-white font-medium px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-sm transition-all duration-200 text-xs sm:text-sm"
-          >
-            <span>{heroData.ctaPrimary}</span>
-            <ArrowUpRight size={14} className="sm:w-[15px] sm:h-[15px]" />
-          </a>
-
-          <a
-            href={heroData.resumeUrl || '/resume.pdf'}
-            target="_blank"
-            rel="noopener noreferrer"
-            download="Diya_Chanda_Resume.pdf"
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-surface hover:bg-card border border-border hover:border-terracotta/50 text-text-main hover:text-terracotta font-medium px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg shadow-sm transition-all duration-200 text-xs sm:text-sm cursor-pointer"
-          >
-            <FileDown size={14} className="text-terracotta sm:w-[15px] sm:h-[15px]" />
-            <span>Download Resume</span>
-          </a>
-
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-surface hover:bg-card border border-border hover:border-terracotta/40 text-text-sub hover:text-text-main font-medium px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg shadow-sm transition-all duration-200 text-xs sm:text-sm"
-          >
-            <Mail size={14} className="sm:w-[15px] sm:h-[15px]" />
-            <span>{heroData.ctaSecondary}</span>
-          </a>
-        </div>
-
-        {/* Social Quick-Links Ribbon */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-16">
-          <a
-            href={socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Diya Chanda GitHub Profile"
-            className="p-2 sm:p-2.5 rounded-lg bg-surface border border-border-subtle hover:border-terracotta/40 text-text-sub hover:text-terracotta hover:bg-card transition-all shadow-xs"
-          >
-            <GithubIcon size={16} />
-          </a>
-
-          <a
-            href={socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Diya Chanda LinkedIn Profile"
-            className="p-2 sm:p-2.5 rounded-lg bg-surface border border-border-subtle hover:border-terracotta/40 text-text-sub hover:text-terracotta hover:bg-card transition-all shadow-xs"
-          >
-            <LinkedinIcon size={16} />
-          </a>
-
-          <a
-            href={socials.researchgate}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Diya Chanda ResearchGate Profile"
-            className="p-2 sm:p-2.5 rounded-lg bg-surface border border-border-subtle hover:border-terracotta/40 text-text-sub hover:text-terracotta hover:bg-card transition-all shadow-xs"
-          >
-            <ResearchGateIcon size={16} />
-          </a>
-        </div>
-
-        {/* Dynamic Highlights Metric Ribbon */}
-        <div className="w-full grid grid-cols-3 gap-1.5 sm:gap-4 md:gap-6 pt-6 sm:pt-10 border-t border-border-subtle">
-          <a
-            href="#research"
-            className="bg-card/60 hover:bg-card border border-border-subtle hover:border-terracotta/40 rounded-xl p-2 sm:p-4 text-center transition-all duration-200 group block shadow-xs min-w-0"
-          >
-            <div className="flex items-center justify-center gap-1 text-terracotta mb-0.5 sm:mb-1">
-              <BookOpen size={14} className="sm:w-[18px] sm:h-[18px]" />
-              <span className="font-serif text-lg sm:text-2xl md:text-3xl font-bold text-text-main group-hover:text-terracotta transition-colors">
-                {papersCount}
-              </span>
-            </div>
-            <p className="text-[9px] sm:text-xs md:text-sm font-mono text-text-mute group-hover:text-text-sub transition-colors leading-tight truncate">
-              Published Papers
-            </p>
-          </a>
-
-          <a
-            href="#certificates"
-            className="bg-card/60 hover:bg-card border border-border-subtle hover:border-terracotta/40 rounded-xl p-2 sm:p-4 text-center transition-all duration-200 group block shadow-xs min-w-0"
-          >
-            <div className="flex items-center justify-center gap-1 text-terracotta mb-0.5 sm:mb-1">
-              <Award size={14} className="sm:w-[18px] sm:h-[18px]" />
-              <span className="font-serif text-lg sm:text-2xl md:text-3xl font-bold text-text-main group-hover:text-terracotta transition-colors">
-                {certsCount}
-              </span>
-            </div>
-            <p className="text-[9px] sm:text-xs md:text-sm font-mono text-text-mute group-hover:text-text-sub transition-colors leading-tight truncate">
-              Honors &amp; Certs
-            </p>
-          </a>
-
-          <a
-            href="#projects"
-            className="bg-card/60 hover:bg-card border border-border-subtle hover:border-terracotta/40 rounded-xl p-2 sm:p-4 text-center transition-all duration-200 group block shadow-xs min-w-0"
-          >
-            <div className="flex items-center justify-center gap-1 text-terracotta mb-0.5 sm:mb-1">
-              <FolderGit2 size={14} className="sm:w-[18px] sm:h-[18px]" />
-              <span className="font-serif text-lg sm:text-2xl md:text-3xl font-bold text-text-main group-hover:text-terracotta transition-colors">
-                {projectsCount}
-              </span>
-            </div>
-            <p className="text-[9px] sm:text-xs md:text-sm font-mono text-text-mute group-hover:text-text-sub transition-colors leading-tight truncate">
-              Engineered Systems
-            </p>
-          </a>
         </div>
 
       </div>

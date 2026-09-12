@@ -1,15 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import {
   BookOpen,
   ExternalLink,
-  Sparkles,
   MapPin,
   Calendar,
   CheckCircle2,
   FileText,
-  X,
+  ChevronDown,
+  ChevronUp,
+  Copy,
+  Check,
+  Quote,
 } from 'lucide-react';
 
 interface Paper {
@@ -34,240 +37,253 @@ interface ResearchClientProps {
 }
 
 export const ResearchClient = ({ heading, papers }: ResearchClientProps) => {
-  const [selectedPaper, setSelectedPaper] = useState<Paper | null>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
 
-  // Focus trapping and scroll locking
-  useEffect(() => {
-    if (selectedPaper) {
-      document.body.style.overflow = 'hidden';
+  const toggleExpand = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          setSelectedPaper(null);
-        }
-      };
-
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-        document.body.style.overflow = 'unset';
-      };
-    }
-  }, [selectedPaper]);
+  const handleCopyCitation = (paper: Paper) => {
+    const citation = `${paper.authors.join(', ')} (${paper.date.slice(-4)}). "${paper.title}." In ${paper.publishedIn}${paper.pages ? `, pp. ${paper.pages}` : ''}. ${paper.publisher}. DOI: ${paper.doi || paper.doiLink}`;
+    navigator.clipboard.writeText(citation);
+    setCopiedId(paper.id);
+    setTimeout(() => setCopiedId(null), 2500);
+  };
 
   return (
-    <section id="research" className="py-16 sm:py-24 px-3.5 sm:px-6 border-t border-border-subtle transition-colors w-full max-w-full overflow-hidden">
-      <div className="max-w-6xl mx-auto w-full">
+    <section
+      id="research"
+      className="py-16 sm:py-24 border-t border-hairline transition-colors w-full max-w-full overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-          <p className="text-xs font-mono uppercase tracking-widest text-terracotta font-semibold mb-2">
-            Academic Publications
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">
-            {heading}
-          </h2>
-          <div className="w-12 h-0.5 bg-terracotta mx-auto mb-4" />
-          <p className="text-text-sub text-xs sm:text-base md:text-lg leading-relaxed text-justify px-1 sm:px-2">
-            Peer-reviewed research in explainable deep learning, computer vision, and precision agricultural AI.
-          </p>
+        {/* Section Header: Monograph Chapter § 01 */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 mb-10 sm:mb-14 border-b border-hairline gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-2 text-xs font-mono text-terracotta tracking-wider uppercase font-semibold">
+              <span>§ 01 // Empirical Research</span>
+              <span className="text-border-hairline font-sans">·</span>
+              <span className="text-text-mute font-normal">Peer-Reviewed Bibliography</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-main tracking-tight">
+              {heading}
+            </h2>
+          </div>
+
+          <div className="font-mono text-xs text-text-mute md:text-right max-w-sm">
+            <span className="text-text-main font-semibold block text-sm">
+              0{papers.length} Peer-Reviewed Articles
+            </span>
+            <span className="leading-tight block mt-0.5">
+              IEEE Xplore · Springer LNNS · Explainable Deep Learning (XAI)
+            </span>
+          </div>
         </div>
 
-        {/* Papers Compact Editorial List */}
-        <div className="space-y-6 sm:space-y-8 w-full">
-          {papers.map((paper) => (
-            <article
-              key={paper.id}
-              className="bg-card border border-border-subtle hover:border-terracotta/40 rounded-2xl p-4 sm:p-7 shadow-sm transition-all duration-300 group hover:-translate-y-1 hover:shadow-md w-full min-w-0"
-            >
-              <div className="space-y-3.5 sm:space-y-5">
-                
-                {/* Meta Header */}
-                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pb-2.5 sm:pb-3 border-b border-border-subtle/60">
-                  <span className="inline-flex items-center gap-1.5 px-2 sm:px-3 py-1 rounded-full bg-surface border border-border-subtle text-[10px] sm:text-[11px] font-mono font-semibold text-terracotta">
-                    <BookOpen size={12} className="flex-shrink-0" />
-                    <span>{paper.publisher} · {paper.publishedIn.includes('LNNS') ? 'Springer LNNS' : 'Conference Proceedings'}</span>
-                  </span>
+        {/* Scholarly Bibliography Grid */}
+        <div className="divide-y divide-hairline">
+          {papers.map((paper, index) => {
+            const isExpanded = expandedId === paper.id;
+            const venueYear = paper.date.match(/\d{4}/)?.[0] || '2025';
 
-                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-text-mute">
-                    <Calendar size={12} className="opacity-70" />
-                    <span>{paper.date}</span>
-                  </span>
-
-                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-mono text-text-mute">
-                    <MapPin size={12} className="opacity-70" />
-                    <span>{paper.conferenceLocation}</span>
-                  </span>
-
-                  {paper.doi && (
-                    <span className="ml-auto text-[10px] sm:text-[11px] font-mono text-text-mute hidden md:inline-block">
-                      DOI: {paper.doi}
-                    </span>
-                  )}
-                </div>
-
-                {/* Paper Title */}
-                <h3 className="font-serif text-base sm:text-xl lg:text-2xl font-bold text-text-main group-hover:text-terracotta transition-colors leading-snug break-words">
-                  {paper.title}
-                </h3>
-
-                {/* Publication Venue */}
-                <p className="text-xs sm:text-sm font-mono text-text-sub font-medium leading-relaxed break-words">
-                  <span className="text-text-mute">Published in: </span>
-                  {paper.publishedIn}
-                  {paper.pages ? ` (pp. ${paper.pages})` : ''}
-                </p>
-
-                {/* Authors */}
-                <p className="text-xs sm:text-sm text-text-sub leading-relaxed break-words">
-                  <span className="font-semibold text-text-main font-mono text-[11px] sm:text-xs uppercase tracking-wider">Authors: </span>
-                  {paper.authors.map((author, idx) => {
-                    const isDiya = author.toLowerCase().includes('diya chanda');
-                    return (
-                      <span key={idx}>
-                        {isDiya ? (
-                          <span className="font-bold text-terracotta underline decoration-terracotta/40 underline-offset-2">
-                            {author}
-                          </span>
-                        ) : (
-                          <span>{author}</span>
-                        )}
-                        {idx < paper.authors.length - 1 ? ', ' : ''}
+            return (
+              <article
+                key={paper.id}
+                className="py-8 sm:py-12 transition-colors group"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+                  
+                  {/* Left Column: Marginalia Gutter (3 cols) */}
+                  <div className="lg:col-span-3 flex lg:flex-col justify-between lg:justify-start gap-3 flex-wrap">
+                    <div className="flex items-baseline gap-2.5">
+                      <span className="font-mono text-xs text-text-mute font-semibold">
+                        [0{index + 1}]
                       </span>
-                    );
-                  })}
-                </p>
-
-                {/* Key Metrics Chips */}
-                {paper.keyMetrics && paper.keyMetrics.length > 0 && (
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1 w-full">
-                    <span className="text-[10px] sm:text-xs font-mono text-text-mute font-medium mr-1">Key Results:</span>
-                    {paper.keyMetrics.map((metric, mIdx) => (
-                      <span
-                        key={mIdx}
-                        className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-md bg-surface border border-border-subtle text-[10px] sm:text-[11px] font-mono font-medium text-text-main max-w-full break-words"
-                      >
-                        <CheckCircle2 size={12} className="text-emerald-500 flex-shrink-0" />
-                        <span>{metric}</span>
+                      <span className="font-serif text-2xl font-bold text-text-main">
+                        {venueYear}
                       </span>
-                    ))}
+                    </div>
+
+                    <div className="flex flex-col gap-1.5 font-mono text-[11px]">
+                      <span className="inline-flex items-center gap-1.5 w-fit px-2.5 py-0.5 rounded border border-hairline bg-surface dark:bg-card text-terracotta font-semibold uppercase tracking-wider">
+                        <BookOpen size={11} />
+                        <span>{paper.publisher} · {paper.publishedIn.includes('LNNS') ? 'Springer LNNS' : 'IEEE Xplore'}</span>
+                      </span>
+
+                      <div className="text-text-mute flex items-center gap-1 mt-0.5">
+                        <Calendar size={11} className="opacity-70 flex-shrink-0" />
+                        <span>{paper.date}</span>
+                      </div>
+
+                      <div className="text-text-mute flex items-center gap-1">
+                        <MapPin size={11} className="opacity-70 flex-shrink-0" />
+                        <span className="truncate">{paper.conferenceLocation}</span>
+                      </div>
+
+                      {paper.doi && (
+                        <span className="text-[10px] text-text-mute truncate mt-1 pt-1 border-t border-hairline/60">
+                          DOI: {paper.doi}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                )}
 
-                {/* Action Links Bar */}
-                <div className="pt-2 flex flex-wrap items-center gap-2 sm:gap-3 w-full">
-                  {/* Clickable Read Abstract Button */}
-                  <button
-                    onClick={() => setSelectedPaper(paper)}
-                    className="inline-flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg bg-surface hover:bg-card border border-border hover:border-terracotta/40 text-text-main hover:text-terracotta text-xs font-medium shadow-xs transition-colors cursor-pointer flex-1 sm:flex-none text-center"
-                  >
-                    <FileText size={14} className="text-terracotta flex-shrink-0" />
-                    <span>Read Abstract</span>
-                  </button>
+                  {/* Right Column: Title, Authors, Metrics & Inline Abstract (9 cols) */}
+                  <div className="lg:col-span-9 flex flex-col">
+                    
+                    {/* Paper Title */}
+                    <h3 className="font-serif text-xl sm:text-2xl lg:text-[26px] font-bold text-text-main group-hover:text-terracotta transition-colors leading-snug">
+                      {paper.title}
+                    </h3>
 
-                  <a
-                    href={paper.doiLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg bg-surface hover:bg-card border border-border hover:border-terracotta/40 text-text-sub hover:text-terracotta text-xs font-medium shadow-xs transition-colors flex-1 sm:flex-none text-center"
-                  >
-                    <Sparkles size={13} className="text-terracotta flex-shrink-0" />
-                    <span>{paper.publisher === 'Springer' ? 'SpringerLink' : 'IEEE Xplore'}</span>
-                    <ExternalLink size={12} />
-                  </a>
+                    {/* Venue Details */}
+                    <p className="text-xs sm:text-sm font-mono text-text-sub mt-2 leading-relaxed">
+                      <span className="text-text-mute uppercase tracking-wider text-[11px] font-semibold">Venue: </span>
+                      <span className="text-text-main font-medium">{paper.publishedIn}</span>
+                      {paper.pages ? ` (pp. ${paper.pages})` : ''}
+                    </p>
 
-                  {paper.bookLink && (
-                    <a
-                      href={paper.bookLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg bg-surface hover:bg-card border border-border hover:border-terracotta/40 text-text-sub hover:text-terracotta text-xs font-medium shadow-xs transition-colors hidden sm:inline-flex"
-                    >
-                      <BookOpen size={13} className="text-terracotta flex-shrink-0" />
-                      <span>Springer Book</span>
-                      <ExternalLink size={12} />
-                    </a>
-                  )}
+                    {/* Authors List */}
+                    <p className="text-xs sm:text-sm text-text-sub mt-2 leading-relaxed">
+                      <span className="font-semibold text-text-mute font-mono text-[11px] uppercase tracking-wider">
+                        Authors:{' '}
+                      </span>
+                      {paper.authors.map((author, idx) => {
+                        const isDiya = author.toLowerCase().includes('diya chanda');
+                        return (
+                          <span key={idx}>
+                            {isDiya ? (
+                              <span className="font-bold text-terracotta underline decoration-terracotta/40 underline-offset-2">
+                                {author}
+                              </span>
+                            ) : (
+                              <span>{author}</span>
+                            )}
+                            {idx < paper.authors.length - 1 ? ', ' : ''}
+                          </span>
+                        );
+                      })}
+                    </p>
+
+                    {/* Key Findings Chips */}
+                    {paper.keyMetrics && paper.keyMetrics.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-2 mt-3.5">
+                        <span className="text-[11px] font-mono text-text-mute font-semibold uppercase tracking-wider">
+                          Key Results:
+                        </span>
+                        {paper.keyMetrics.map((metric, mIdx) => (
+                          <span
+                            key={mIdx}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-hairline bg-surface/80 dark:bg-card/80 text-[11px] font-mono text-text-main font-medium"
+                          >
+                            <CheckCircle2 size={12} className="text-emerald-500 flex-shrink-0" />
+                            <span>{metric}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Action Bar */}
+                    <div className="flex flex-wrap items-center gap-2.5 mt-5 pt-3 border-t border-hairline/60">
+                      {/* Inline Abstract Toggle */}
+                      <button
+                        onClick={() => toggleExpand(paper.id)}
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md border border-hairline bg-surface dark:bg-card hover:border-terracotta text-text-main hover:text-terracotta text-xs font-mono font-medium transition-colors cursor-pointer"
+                        aria-expanded={isExpanded}
+                      >
+                        <FileText size={13} className="text-terracotta" />
+                        <span>{isExpanded ? 'Collapse Abstract' : 'Read Abstract'}</span>
+                        {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                      </button>
+
+                      {/* Direct DOI Publication Link */}
+                      <a
+                        href={paper.doiLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md border border-hairline bg-surface dark:bg-card hover:border-terracotta text-text-sub hover:text-terracotta text-xs font-mono font-medium transition-colors"
+                      >
+                        <span>{paper.publisher === 'Springer' ? 'SpringerLink Chapter' : 'IEEE Xplore Article'}</span>
+                        <ExternalLink size={12} />
+                      </a>
+
+                      {/* Springer Book Link (if present) */}
+                      {paper.bookLink && (
+                        <a
+                          href={paper.bookLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-hairline bg-surface dark:bg-card hover:border-terracotta text-text-sub hover:text-terracotta text-xs font-mono font-medium transition-colors"
+                        >
+                          <span>Springer Book Series</span>
+                          <ExternalLink size={12} />
+                        </a>
+                      )}
+
+                      {/* Copy Citation Button */}
+                      <button
+                        onClick={() => handleCopyCitation(paper)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-hairline bg-surface dark:bg-card hover:border-terracotta text-text-sub hover:text-text-main text-xs font-mono transition-colors ml-auto cursor-pointer"
+                        title="Copy IEEE citation format to clipboard"
+                      >
+                        {copiedId === paper.id ? (
+                          <>
+                            <Check size={12} className="text-emerald-500" />
+                            <span className="text-emerald-500 font-medium">Citation Copied</span>
+                          </>
+                        ) : (
+                          <>
+                            <Quote size={12} className="text-text-mute" />
+                            <span>Cite</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Inline Expandable Abstract Dossier */}
+                    {isExpanded && (
+                      <div className="mt-4 p-4 sm:p-6 rounded-lg border border-hairline bg-surface/50 dark:bg-card/50 transition-all animate-fadeIn">
+                        <div className="flex items-center justify-between pb-2 mb-3 border-b border-hairline">
+                          <span className="text-[11px] font-mono uppercase tracking-widest text-text-mute font-semibold">
+                            Abstract &amp; Study Methodology
+                          </span>
+                          {paper.doi && (
+                            <span className="text-[10px] font-mono text-text-mute">
+                              DOI: {paper.doi}
+                            </span>
+                          )}
+                        </div>
+
+                        <p className="text-xs sm:text-sm text-text-main leading-relaxed text-justify font-sans">
+                          {paper.abstract}
+                        </p>
+
+                        {/* Citation block */}
+                        <div className="mt-4 pt-3 border-t border-hairline/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-text-sub">
+                          <span>
+                            Citation: {paper.authors[0]} et al., {venueYear}, {paper.publisher}.
+                          </span>
+                          <button
+                            onClick={() => handleCopyCitation(paper)}
+                            className="inline-flex items-center gap-1 text-terracotta hover:underline cursor-pointer"
+                          >
+                            <Copy size={12} />
+                            <span>{copiedId === paper.id ? 'Copied to Clipboard' : 'Copy Full Citation'}</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+
                 </div>
-
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
       </div>
-
-      {/* Abstract & Scholarly Summary Modal */}
-      {selectedPaper && (
-        <div
-          onClick={() => setSelectedPaper(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="paper-modal-title"
-          className="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-6 animate-fadeIn"
-        >
-          <div
-            ref={modalRef}
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl max-h-[90vh] bg-card border border-border rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-7 flex flex-col"
-          >
-            {/* Modal Header */}
-            <div className="flex items-start justify-between pb-3 mb-3 sm:mb-4 border-b border-border-subtle gap-3">
-              <div>
-                <span className="text-[10px] sm:text-[11px] font-mono text-terracotta font-semibold uppercase tracking-wider block mb-1">
-                  Peer-Reviewed Research Abstract
-                </span>
-                <h3 id="paper-modal-title" className="font-serif text-base sm:text-xl font-bold text-text-main leading-snug break-words">
-                  {selectedPaper.title}
-                </h3>
-              </div>
-
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedPaper(null)}
-                autoFocus
-                aria-label="Close abstract modal"
-                className="p-1.5 rounded-lg border border-border hover:border-terracotta text-text-sub hover:text-terracotta bg-surface transition-colors cursor-pointer flex-shrink-0"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            {/* Modal Content */}
-            <div data-lenis-prevent className="overflow-y-auto space-y-3.5 sm:space-y-4 pr-1">
-              <div className="bg-surface/50 rounded-xl p-3.5 sm:p-4 border border-border-subtle/70">
-                <span className="block text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-text-mute font-semibold mb-1.5">
-                  Complete Abstract
-                </span>
-                <p className="text-text-main text-xs sm:text-[15px] leading-relaxed text-justify">
-                  {selectedPaper.abstract}
-                </p>
-              </div>
-
-              {/* Citation & Venue Details */}
-              <div className="text-xs font-mono text-text-sub space-y-1 bg-card rounded-xl p-3 border border-border-subtle">
-                <p className="break-words"><span className="text-text-mute font-semibold">Venue:</span> {selectedPaper.publishedIn}</p>
-                <p className="break-words"><span className="text-text-mute font-semibold">Date &amp; Location:</span> {selectedPaper.date} · {selectedPaper.conferenceLocation}</p>
-                {selectedPaper.doi && <p className="break-words"><span className="text-text-mute font-semibold">DOI:</span> {selectedPaper.doi}</p>}
-              </div>
-
-              {/* Action Button inside Modal */}
-              <div className="pt-2 flex justify-end gap-2">
-                <a
-                  href={selectedPaper.doiLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-terracotta hover:bg-terracotta-hover text-white font-medium px-4 py-2.5 rounded-lg shadow-xs text-xs"
-                >
-                  <span>{selectedPaper.publisher === 'Springer' ? 'Open Chapter on SpringerLink' : 'Open on IEEE Xplore'}</span>
-                  <ExternalLink size={13} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
