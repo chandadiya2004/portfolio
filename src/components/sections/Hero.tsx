@@ -48,7 +48,7 @@ export const Hero = () => {
             <p className="font-mono text-xs sm:text-[13px] text-text-sub mb-4 flex flex-wrap items-center gap-x-2 gap-y-1">
               <span className="text-terracotta font-medium">B.Tech CSE (AI &amp; ML)</span>
               <span className="text-border-hairline font-sans">|</span>
-              <span>The Neotia University (9.48 CGPA)</span>
+              <span>The Neotia University (9.54 CGPA)</span>
               <span className="text-border-hairline font-sans">|</span>
               <span className="text-text-main font-medium">IEEE &amp; Springer Author</span>
             </p>
@@ -170,7 +170,7 @@ export const Hero = () => {
               </div>
               <div className="flex justify-between items-center py-1">
                 <span className="text-text-mute">CGPA</span>
-                <span className="text-terracotta font-semibold">9.48 / 10.0</span>
+                <span className="text-terracotta font-semibold">9.54 / 10.0</span>
               </div>
               <div className="flex justify-between items-center py-1">
                 <span className="text-text-mute">Papers</span>
@@ -212,7 +212,7 @@ export const Hero = () => {
               <div className="flex items-center gap-2 mb-1">
                 <Award size={16} className="text-terracotta" />
                 <span className="font-serif text-2xl sm:text-3xl font-bold text-text-main">
-                  9.48
+                  9.54
                 </span>
               </div>
               <p className="text-xs font-mono text-text-sub font-medium">

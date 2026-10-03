@@ -25,7 +25,7 @@ export const Footer = () => {
             </div>
 
             <p className="text-xs text-text-sub leading-relaxed max-w-md">
-              Undergraduate researcher in the Department of Computer Science &amp; Engineering (AI &amp; ML) at The Neotia University, maintaining a 9.48 CGPA. Author of 4 peer-reviewed publications across IEEE ICRITO, IEEE COMPUTINGCON, and Springer LNNS.
+              Undergraduate researcher in the Department of Computer Science &amp; Engineering (AI &amp; ML) at The Neotia University, maintaining a 9.54 CGPA. Author of 4 peer-reviewed publications across IEEE ICRITO, IEEE COMPUTINGCON, and Springer LNNS.
             </p>
 
             <div className="pt-2 text-[11px] font-mono text-text-mute flex flex-col gap-1">

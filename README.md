@@ -38,7 +38,7 @@
 
 ## ✨ Overview
 
-This repository houses the personal portfolio and academic research index of **Diya Chanda** (B.Tech in Computer Science & Engineering with AI/ML Specialization at *The Neotia University*, CGPA: **9.48 / 10.00 — Top Decile**).
+This repository houses the personal portfolio and academic research index of **Diya Chanda** (B.Tech in Computer Science & Engineering with AI/ML Specialization at *The Neotia University*, CGPA: **9.54 / 10.00 — Top Decile**).
 
 Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Tailwind CSS**, the platform bridges high-impact academic machine learning research (IEEE & Springer publications) with production-grade full-stack software engineering.
 
@@ -150,7 +150,7 @@ Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Tail
 - **DeepLearning.AI**: Deep Learning Specialization (Neural Networks, Hyperparameter Tuning, Structuring ML Projects)
 - **IBM / Coursera**: Python for Data Science, AI & Development
 - **IBM / Coursera**: Developing AI Applications with Python and Flask
-- **The Neotia University**: Academic Excellence Award & Merit Scholar (CGPA: 9.48)
+- **The Neotia University**: Academic Excellence Award & Merit Scholar (CGPA: 9.54)
 
 ---
 
