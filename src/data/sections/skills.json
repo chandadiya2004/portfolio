@@ -1,56 +1,81 @@
 {
-  "heading": "Skills & Tech Stack",
+  "heading": "Technical Stack & Capabilities",
+  "eyebrow": "Architecture & Engineering Tooling",
+  "description": "A curated directory of frameworks, libraries, runtime environments, and infrastructure tools utilized across deep learning research and full-stack systems engineering.",
   "categories": [
     {
-      "title": "Programming Languages",
-      "icon": "💻",
+      "id": "ai-ml",
+      "title": "AI/ML & Deep Learning",
+      "tag": "Research Core",
+      "scope": "Multi-headed CNNs, Vision Transformers, Grad-CAM interpretability, and scientific computing.",
       "skills": [
-        "Python",
-        "C",
-        "Java",
-        "JavaScript",
-        "R"
-      ]
-    },
-    {
-      "title": "Web Development",
-      "icon": "🌐",
-      "skills": [
-        "HTML",
-        "CSS",
-        "React.js",
-        "Tailwind CSS",
-        "Flask",
-        "FastAPI"
-      ]
-    },
-    {
-      "title": "AI / ML / Deep Learning",
-      "icon": "🤖",
-      "skills": [
+        "PyTorch",
         "TensorFlow",
         "Keras",
-        "OpenCV",
-        "Scikit-learn",
+        "scikit-learn",
+        "OpenCV"
+      ]
+    },
+    {
+      "id": "gen-ai",
+      "title": "Generative AI & NLP",
+      "tag": "Grounded Systems",
+      "scope": "Context-grounded RAG pipelines, semantic embeddings, vector indexing, and LLM orchestration.",
+      "skills": [
+        "LangChain",
+        "RAG",
         "LLMs",
-        "Generative AI"
+        "Vector Search"
       ]
     },
     {
-      "title": "Databases",
-      "icon": "🗄️",
+      "id": "languages",
+      "title": "Programming Languages",
+      "tag": "Algorithmic Foundation",
+      "scope": "Object-oriented architectures, low-level data structures, declarative queries, and backend scripting.",
       "skills": [
+        "Python",
+        "Java",
+        "SQL",
+        "C"
+      ]
+    },
+    {
+      "id": "web-backend",
+      "title": "Web & Backend Architecture",
+      "tag": "Production APIs",
+      "scope": "High-throughput async REST microservices, client-side rendering, and responsive state management.",
+      "skills": [
+        "FastAPI",
+        "Node.js",
+        "Express.js",
+        "React.js",
+        "REST APIs"
+      ]
+    },
+    {
+      "id": "databases-cloud",
+      "title": "Databases & Cloud Storage",
+      "tag": "Data Infrastructure",
+      "scope": "ACID relational databases, NoSQL document stores, in-memory caching, and managed cloud backend.",
+      "skills": [
+        "PostgreSQL",
         "MongoDB",
-        "PostgreSQL"
+        "Supabase",
+        "AWS",
+        "Redis"
       ]
     },
     {
-      "title": "DevOps & Deployment",
-      "icon": "🚀",
+      "id": "devops-tools",
+      "title": "Tools & CI/CD Deployment",
+      "tag": "DevOps & Pipeline",
+      "scope": "Containerization, automated continuous integration, version control workflows, and cloud releases.",
       "skills": [
-        "Vercel",
-        "Render",
-        "AWS"
+        "Docker",
+        "Git",
+        "GitHub",
+        "GitHub Actions"
       ]
     }
   ]

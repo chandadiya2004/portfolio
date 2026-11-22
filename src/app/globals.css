@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   WARM EDITORIAL DESIGN TOKENS (LIGHT & DARK)
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+  /* Canvas & Surfaces (Warm Ivory / Cream) */
+  --bg-canvas: #FAF8F5;
+  --bg-surface: #F3EFE9;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FCFBF9;
+  
+  /* Borders & Rules */
+  --border-hairline: #E8E2D9;
+  --border-subtle: #EBE5DC;
+  --border-default: #DDD5C9;
+  --border-focus: #C25E38;
+
+  /* Typography Colors (All tuned to WCAG AA >= 4.5:1) */
+  --text-primary: #1C1917;       /* 15.2:1 contrast */
+  --text-secondary: #57534E;     /* 7.1:1 contrast */
+  --text-muted: #78716C;         /* 4.9:1 contrast */
+  --text-inverse: #FAF8F5;
+
+  /* Signature Accent — Terracotta */
+  --accent: #C25E38;
+  --accent-hover: #A84D2B;
+  --accent-subtle: #F7EBE4;
+  --accent-border: #ECC9BC;
+  --accent-contrast: #FFFFFF;
+
+  /* Functional / Status */
+  --success: #2E7D32;
+  --success-subtle: #E8F5E9;
+  --tag-bg: #F0EAE1;
+  --tag-text: #44403C;
+
+  /* Shadows (Warm Tone) */
+  --shadow-sm: 0 1px 3px 0 rgba(44, 36, 32, 0.06);
+  --shadow-md: 0 4px 16px -2px rgba(44, 36, 32, 0.08);
+  --shadow-lg: 0 12px 32px -4px rgba(44, 36, 32, 0.12);
+  --nav-backdrop: rgba(250, 248, 245, 0.88);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  /* Canvas & Surfaces (Deep Warm Charcoal) */
+  --bg-canvas: #121110;
+  --bg-surface: #1B1917;
+  --bg-card: #24211E;
+  --bg-card-hover: #2C2824;
+
+  /* Borders & Rules */
+  --border-hairline: #2A2622;
+  --border-subtle: #2D2925;
+  --border-default: #3A3530;
+  --border-focus: #D4826A;
+
+  /* Typography Colors (All tuned to WCAG AA >= 4.5:1) */
+  --text-primary: #F5F0EB;       /* 15.6:1 contrast */
+  --text-secondary: #A8A29E;     /* 6.8:1 contrast */
+  --text-muted: #8E8883;         /* 4.6:1 contrast */
+  --text-inverse: #1C1917;
+
+  /* Signature Accent — Terracotta (Adjusted for dark canvas) */
+  --accent: #D4826A;
+  --accent-hover: #E29983;
+  --accent-subtle: #2E221E;
+  --accent-border: #4D352D;
+  --accent-contrast: #121110;
+
+  /* Functional / Status */
+  --success: #4CAF50;
+  --success-subtle: #1B2E1E;
+  --tag-bg: #22201D;
+  --tag-text: #D6D3D1;
+
+  /* Shadows (Dark Mode) */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
+  --nav-backdrop: rgba(18, 17, 16, 0.88);
+}
+
+/* ==========================================================================
+   BASE & RESET
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+input, textarea, select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-hairline);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1024px) {
+  html, body {
+    overflow-x: visible;
+  }
+}
+
+/* Subtle Editorial Canvas Tint */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(194, 94, 56, 0.05), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(194, 94, 56, 0.03), transparent 70%);
+}
+
+[data-theme="dark"] body::before {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 130, 106, 0.07), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(212, 130, 106, 0.04), transparent 70%);
+}
+
+/* ==========================================================================
+   EDITORIAL MONOGRAPH HAIRLINES & STRUCTURAL UTILITIES
+   ========================================================================== */
+
+.border-hairline {
+  border-color: var(--border-hairline);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--border-hairline);
+}
+
+.hairline-b {
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--border-hairline);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--border-hairline);
+}
+
+.monograph-rule {
+  height: 1px;
+  background-color: var(--border-hairline);
+  width: 100%;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES & NO SCROLLBAR
+   ========================================================================== */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   SELECTION & SCROLLBAR
+   ========================================================================== */
+
+::selection {
+  background-color: var(--accent-subtle);
+  color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-canvas);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+}
+
+
+

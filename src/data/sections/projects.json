@@ -1,60 +1,123 @@
 {
-  "heading": "Featured Projects",
+  "heading": "Featured Systems & Projects",
+  "eyebrow": "Production Platforms & Deep Learning Systems",
+  "description": "Enterprise compliance platforms, climate-smart agronomy engines, generative AI assistants, and explainable computer vision architectures.",
   "projects": [
     {
       "id": 1,
-      "icon": "🎬",
-      "title": "Movie Recommendation System",
-      "category": "Machine Learning",
-      "image": "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=500&h=300&fit=crop",
-      "description": "A content-based recommendation engine using cosine similarity to suggest movies based on user preferences and feature similarity.",
-      "tech": ["Python", "Streamlit", "Scikit-learn", "Cosine Similarity"],
-      "github": "https://github.com/chandadiya2004/movie-recommendation-system",
-      "demo": "https://movie-recommendation-system-diya.streamlit.app/"
+      "title": "CampusSphere",
+      "tagline": "Enterprise Accreditation & Institutional Credit Banking System",
+      "category": "Enterprise Full-Stack Platform",
+      "status": "Live Production Platform",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80",
+      "description": "Multi-tier enterprise compliance and credit banking platform for higher education institutions. Streamlines student co-curricular verification via a two-stage pipeline (Faculty Advisor Stage 1 & Admin Stage 2), dynamic Credit Policy Engine mapped to NAAC Criteria 1–7, cryptographic public credential verification (/verify/[id]), and 1-click NAAC/NIRF CSV compliance reports.",
+      "highlights": [
+        "Two-Stage Verification Pipeline (Faculty & Admin)",
+        "Dynamic NAAC Criteria 1–7 Credit Engine",
+        "Cryptographic Public Credential Verification",
+        "OpenTelemetry Distributed Tracing & Upstash Redis"
+      ],
+      "tech": [
+        "Next.js 15",
+        "React 19",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Supabase",
+        "Upstash Redis",
+        "Cloudinary",
+        "OpenTelemetry",
+        "Tailwind CSS"
+      ],
+      "github": "https://github.com/chandadiya2004/CampusSphere",
+      "demo": "https://ssh.arpanpramanik.dev/"
     },
     {
       "id": 2,
-      "icon": "🏥",
-      "title": "Diabetes Prediction System",
-      "category": "Healthcare AI",
-      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=300&fit=crop",
-      "description": "An AI-powered system that predicts the likelihood of diabetes using patient health metrics, featuring a clean web interface and real-time prediction.",
-      "tech": ["Python", "Streamlit", "Scikit-learn"],
-      "github": "https://github.com/chandadiya2004/diabetes-prediction",
-      "demo": "https://diabetes-prediction-diya.onrender.com/"
+      "title": "JalDrishti (जलदृष्टि)",
+      "tagline": "Climate-Smart Agronomy & Precision Irrigation Advisory",
+      "category": "Edge-AI & Precision Agronomy",
+      "status": "Research & Advisory System",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=1200&auto=format&fit=crop&q=80",
+      "description": "State-of-the-art precision irrigation and crop advisory platform for Indian agriculture. Combines FAO-56 Penman-Monteith Evapotranspiration modeling, SoilGrids satellite physics, Smart Rain Hold warnings (≥5.0mm override), weather-driven pathogen risk forecasting for 5 critical crops, and JalSathi AI—a multilingual voice-enabled RAG agronomy assistant.",
+      "highlights": [
+        "FAO-56 Penman-Monteith Hydrological Engine",
+        "Smart Rain Hold Warning (≥5mm Precipitation)",
+        "Multilingual Voice RAG (Bengali, Hindi, English)",
+        "Weather-Driven Pathogen Risk Telemetry"
+      ],
+      "tech": [
+        "FastAPI",
+        "Python 3.11",
+        "Flutter",
+        "PostgreSQL",
+        "ChromaDB",
+        "HuggingFace",
+        "Groq Llama-3-70B",
+        "Open-Meteo API",
+        "SoilGrids API",
+        "Redis Cloud"
+      ],
+      "github": "https://github.com/chandadiya2004/JalDrishti-AI",
+      "demo": null
     },
     {
       "id": 3,
-      "icon": "🚗",
-      "title": "Car Price Prediction System",
-      "category": "Regression Analysis",
-      "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500&h=300&fit=crop",
-      "description": "A machine learning-based web application that predicts car prices using regression models trained on real-world datasets. Provides an interactive UI for instant predictions.",
-      "tech": ["Python", "Streamlit", "Scikit-learn"],
-      "github": "https://github.com/chandadiya2004/car-price-prediction",
-      "demo": "https://car-price-prediction-9md2.onrender.com/"
+      "title": "RecipeAI",
+      "tagline": "Generative AI Sous-Chef & Culinary Intelligence Web App",
+      "category": "Generative AI & Web Platform",
+      "status": "Live Web Application",
+      "featured": false,
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&auto=format&fit=crop&q=80",
+      "description": "Context-aware culinary AI web application that brings an expert AI Sous-Chef into the kitchen. Features Pantry Chef (ingredient-first zero-waste cooking), on-demand dish generation, real-time context-aware conversational AI assistant powered by Llama-3.3-70B, Clerk JWT authentication, and Supabase Postgres activity history.",
+      "highlights": [
+        "Pantry Chef (Ingredient-First Cooking)",
+        "Context-Aware Conversational AI Sous-Chef",
+        "Clerk Authentication & Backend JWKS Verification",
+        "Supabase Postgres Activity History & Clear"
+      ],
+      "tech": [
+        "React 18",
+        "TypeScript",
+        "FastAPI",
+        "Python",
+        "Groq Llama-3.3-70B",
+        "Clerk Auth",
+        "Supabase Postgres",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "github": "https://github.com/chandadiya2004/RecipeAI",
+      "demo": "https://recipe-ai-diya.vercel.app/"
     },
     {
       "id": 4,
-      "icon": "💰",
-      "title": "Gold Price Prediction System",
-      "category": "Time Series",
-      "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&h=300&fit=crop",
-      "description": "Machine learning model that forecasts gold prices using historical financial data with an interactive Streamlit dashboard.",
-      "tech": ["Python", "Scikit-learn", "Streamlit"],
-      "github": "https://github.com/chandadiya2004/gold-price-prediction",
-      "demo": "https://gold-price-prediction-diya.streamlit.app/"
-    },
-    {
-      "id": 5,
-      "icon": "🔐",
-      "title": "Caesar Cipher Encryption App",
-      "category": "Cryptography",
-      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop",
-      "description": "A cryptography-based web application that encrypts and decrypts messages using Caesar Cipher logic with a user-friendly interface.",
-      "tech": ["Python", "Streamlit"],
-      "github": "https://github.com/chandadiya2004/caesar-cipher-app",
-      "demo": "https://caesar-cipher-app-diya.streamlit.app/"
+      "title": "FruitQ-GradeX",
+      "tagline": "Explainable Deep Learning Fruit Quality Grading",
+      "category": "Deep Learning & Vision Research",
+      "status": "Live Streamlit App",
+      "featured": false,
+      "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1200&auto=format&fit=crop&q=80",
+      "description": "Multi-task deep learning system that simultaneously classifies fruit species and grades commercial quality. Powered by a custom multi-headed CNN achieving 97.75% fruit classification accuracy and 98.21% quality accuracy across 9,146 images with Grad-CAM decision heatmaps and real-time webcam inference.",
+      "highlights": [
+        "Dual Simultaneous Prediction Heads",
+        "98.21% Quality Assessment Accuracy",
+        "Grad-CAM Decision Heatmap Interpretability",
+        "Real-Time Streamlit & Webcam Inference"
+      ],
+      "tech": [
+        "TensorFlow",
+        "Keras",
+        "Multi-Headed CNN",
+        "Grad-CAM",
+        "OpenCV",
+        "Streamlit",
+        "Python"
+      ],
+      "github": "https://github.com/chandadiya2004/FruitQ-GradeX",
+      "demo": "https://fruitq-quality-classifier.streamlit.app/"
     }
   ]
 }

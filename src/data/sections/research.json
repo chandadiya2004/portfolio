@@ -3,25 +3,98 @@
   "papers": [
     {
       "id": 1,
-      "icon": "🌾",
       "title": "FruitQ-GradeX: Determining Fruit Quality and Grading with Explainable Deep Learning",
-      "authors": "Shibdas Dutta, Subhrendu Guha Neogi, Diya Chanda, Arpan Pramanik, Özgün Girgin, Enes Ladin Öncül",
-      "conference": "IEEE International Conference on Recent Trends and Innovation in Computing",
-      "year": "2025",
+      "authors": [
+        "Shibdas Dutta",
+        "Subhrendu Guha Neogi",
+        "Diya Chanda",
+        "Arpan Pramanik",
+        "Özgün Girgin",
+        "Enes Ladin Öncül"
+      ],
+      "publishedIn": "2025 12th International Conference on Reliability, Infocom Technologies and Optimization (Trends and Future Directions) (ICRITO)",
+      "conferenceLocation": "Noida NCR, India",
+      "date": "18-19 September 2025",
+      "publisher": "IEEE",
       "doi": "10.1109/ICRITO66076.2025.11241706",
-      "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=1200&auto=format&fit=crop",
-      "description": "A multi-task deep learning framework for simultaneous fruit classification and quality assessment using multi-headed CNN. Achieves 98% fruit classification and 99% quality detection accuracy with Grad-CAM interpretability, deployed via Streamlit."
+      "doiLink": "https://doi.org/10.1109/ICRITO66076.2025.11241706",
+      "abstract": "This paper presents a novel multi-task deep learning framework for simultaneous fruit classification and quality assessment using a multi-headed Convolutional Neural Network (CNN). The proposed model achieves state-of-the-art performance on a curated dataset of four Indian fruits (apple, banana, guava, and orange) with two quality classes (good and bad), leveraging aggressive data augmentation and cyclic learning rate scheduling. The proposed architecture employs a shared feature extractor with task-specific heads, achieving 98% accuracy in fruit classification and 99% accuracy in quality detection on the test set. To enhance interpretability, Gradient-weighted Class Activation Mapping (Grad-CAM) is integrated, providing visual explanations of the model's decision-making process for both tasks. The system is deployed via a user-friendly Streamlit interface, enabling real-time predictions with XAI visualizations.",
+      "keyMetrics": [
+        "98% fruit classification accuracy",
+        "99% quality detection accuracy"
+      ]
     },
     {
       "id": 2,
-      "icon": "🥔",
+      "title": "Hyperspectral Fruit and Vegetable Classification Using Convolutional Neural Networks with EfficientNetB3",
+      "authors": [
+        "Shibdas Dutta",
+        "Subhrendu Guha Neogi",
+        "Arpan Pramanik",
+        "Diya Chanda",
+        "Özgün Girgin",
+        "Enes Ladin Öncül"
+      ],
+      "publishedIn": "Data Mining and Information Security (ICDMIS 2025) — Lecture Notes in Networks and Systems (LNNS, volume 1915), Springer",
+      "conferenceLocation": "Springer LNNS Book Series",
+      "date": "21 July 2026",
+      "pages": "449–469",
+      "publisher": "Springer",
+      "doi": "10.1007/978-3-032-21901-5_35",
+      "doiLink": "https://link.springer.com/chapter/10.1007/978-3-032-21901-5_35",
+      "bookLink": "https://link.springer.com/book/10.1007/978-3-032-21901-5",
+      "abstract": "The categorization of fruits and vegetables has gained significant importance in agriculture, food processing, and retail industries, driven by demands for automation, efficiency, and quality control. This study presents a high-performance deep learning method that employs EfficientNetB3, optimized through transfer learning on a hyperspectral image dataset comprising 4,320 images across 36 unique classes, obtained from Kaggle. The proposed model demonstrated outstanding performance, achieving 99.29% accuracy on the training set and 97.21% on the testing set. A comparative adaptation study was conducted evaluating the proposed model against over 20 benchmark deep learning architectures, with the custom CNN reaching 96.1% accuracy but showing limitations in generalization compared to the EfficientNetB3-based model. The model was deployed using Streamlit and OpenCV for real-time classification applications in automated sorting, supply chain enhancement, and precision agriculture.",
+      "keyMetrics": [
+        "99.29% training accuracy",
+        "97.21% test accuracy",
+        "Benchmarked against 20+ architectures"
+      ]
+    },
+    {
+      "id": 3,
       "title": "CropSense: Explainable Deep Learning Framework for Accurate Quality Detection in Solanaceous Crops",
-      "authors": "Shibdas Dutta, Subhrendu Guha Neogi, Shiladitya Chowdhury, Vikrant Chole, Arpan Pramanik, Diya Chanda",
-      "conference": "IEEE International Conference on Recent Trends and Innovation in Computing",
-      "year": "2025",
+      "authors": [
+        "Shibdas Dutta",
+        "Subhrendu Guha Neogi",
+        "Shiladitya Chowdhury",
+        "Vikrant Chole",
+        "Arpan Pramanik",
+        "Diya Chanda"
+      ],
+      "publishedIn": "2025 12th International Conference on Reliability, Infocom Technologies and Optimization (Trends and Future Directions) (ICRITO)",
+      "conferenceLocation": "Noida NCR, India",
+      "date": "18-19 September 2025",
+      "publisher": "IEEE",
       "doi": "10.1109/ICRITO66076.2025.11241535",
-      "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop",
-      "description": "Lightweight multi-headed CNN for potato and tomato quality classification. Achieves 99.9% crop classification and 98.5% quality detection accuracy with Grad-CAM visualizations, deployed via Streamlit for real-time precision agriculture."
+      "doiLink": "https://doi.org/10.1109/ICRITO66076.2025.11241535",
+      "abstract": "CropSense uses explainable deep learning to classify and detect potato and tomato quality in Solanaceous crops. Unlike conventional models that identify crops and diseases independently, CropSense uses a lightweight multiheaded CNN with a shared feature extractor and task-specific heads for fast multi-task learning. The model achieves state-of-the-art crop classification and quality detection accuracy of 99.9% and 98.5% respectively, on a balanced dataset of 10,000 photos with a hybrid augmentation technique and 30% lower parameter overhead than standalone models. Grad-CAM visualizations show lesions and discolorations, improving model interpretability. The system is deployed via Streamlit, bridging crop identification and health evaluation in real time for precision agriculture.",
+      "keyMetrics": [
+        "99.9% crop classification accuracy",
+        "98.5% quality detection accuracy",
+        "30% lower parameter overhead"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "An Explainable Deep Learning Approach for Quality Assessment in Solanaceous Crops",
+      "authors": [
+        "Shibdas Dutta",
+        "Barshan Adhikari",
+        "Arpan Pramanik",
+        "Diya Chanda"
+      ],
+      "publishedIn": "2025 International Conference on Computing and Communications (COMPUTINGCON)",
+      "conferenceLocation": "Talegaon, India",
+      "date": "01-03 September 2025",
+      "publisher": "IEEE",
+      "doi": "10.1109/COMPUTINGCON64838.2025.11376762",
+      "doiLink": "https://doi.org/10.1109/COMPUTINGCON64838.2025.11376762",
+      "abstract": "This paper presents a novel multi-headed hybrid CNN-ViT model for simultaneous classification of potato and tomato crops along with their quality assessment (healthy vs. diseased). Unlike traditional models that treat crop identification and disease detection separately, this approach uses a shared Vision Transformer-based backbone with task-specific output heads, enabling efficient multi-task learning and reducing parameters by over 30%. The model was trained on a custom dataset containing 10,000 images of diseased and healthy samples of both crops, evenly split across four classes, achieving 98.45% accuracy in potato classification and 97.49% for tomato, with overall quality assessment accuracy reaching 98.5%. Grad-CAM visualizations highlight critical regions such as leaf lesions and discoloration for interpretability, deployed via an interactive Streamlit interface for real-time prediction.",
+      "keyMetrics": [
+        "98.45% potato classification accuracy",
+        "97.49% tomato classification accuracy",
+        "98.5% quality assessment accuracy"
+      ]
     }
   ]
 }

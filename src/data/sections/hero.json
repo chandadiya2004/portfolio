@@ -1,8 +1,14 @@
 {
   "name": "Diya Chanda",
-  "title": "B.Tech CSE (AI & ML) | AI Researcher & Full Stack Developer",
-  "subtitle": "Deep Learning • Large Language Models • Generative AI • Scalable Web Systems",
-  "description": "I am a driven Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning, with strong expertise in deep learning, large language models, generative AI, and full stack web development. My focus lies in building intelligent, scalable, and real-world impactful systems by combining research-oriented thinking with production-grade engineering.",
-  "ctaPrimary": "Explore My Work",
-  "ctaSecondary": "Let's Connect"
+  "title": "B.Tech CSE (AI & ML) | AI Researcher & AI Engineer",
+  "subtitle": "Explainable Deep Learning • RAG & Agentic Systems • Computer Vision • Production AI Web Platforms",
+  "description": "Diya Chanda is an AI researcher and machine learning engineer bridging empirical deep learning with production web systems. Specializing in explainable AI, computer vision, and RAG-augmented intelligent architectures, she is a published IEEE & Springer author dedicated to engineering robust, high-accuracy intelligent platforms.",
+  "ctaPrimary": "Explore Selected Works",
+  "ctaSecondary": "Let's Connect",
+  "resumeUrl": "/resume.pdf",
+  "socials": {
+    "github": "https://github.com/chandadiya2004",
+    "linkedin": "https://www.linkedin.com/in/diya-chanda2004/",
+    "researchgate": "https://www.researchgate.net/profile/Diya-Chanda"
+  }
 }

@@ -1,54 +1,77 @@
 {
   "heading": "About Me",
-  "summary": "I am a B.Tech Computer Science Engineering (AI & ML) undergraduate admitted in 2023, with a strong focus on Deep Learning, Large Language Models (LLMs), Generative AI, and scalable full-stack systems. I specialize in architecting intelligent, high-performance applications by integrating state-of-the-art machine learning models with modern cloud-native web technologies. My goal is to build real-world AI solutions that are robust, efficient, and impactful.",
-  "highlights": [
+  "eyebrow": "Background & Philosophy",
+  "summary": "I am a B.Tech Computer Science & Engineering undergraduate specializing in Artificial Intelligence and Machine Learning at The Neotia University, maintaining a 9.54 CGPA. My work bridges empirical deep learning research with production-grade engineering, focusing on explainable computer vision, multi-modal neural architectures, and intelligent systems.",
+  "academicProfile": {
+    "institution": "The Neotia University",
+    "degree": "B.Tech Computer Science & Engineering",
+    "specialization": "Artificial Intelligence & Machine Learning",
+    "cgpa": "9.54 / 10.0",
+    "batch": "2023 – 2027",
+    "location": "West Bengal, India",
+    "researchFocus": "Explainable Deep Learning & Computer Vision"
+  },
+  "interests": [
+    "Deep Learning Research",
+    "Grounded AI & RAG",
+    "Computer Vision & Grad-CAM",
+    "Algorithmic Problem Solving",
+    "Precision Agriculture AI",
+    "Full-Stack Web Systems",
+    "Badminton",
+    "Emerging Tech Exploration"
+  ],
+  "corePillars": [
     {
-      "icon": "🧠",
-      "text": "Deep Learning & Neural Networks"
+      "id": "pillar-1",
+      "title": "Grounded AI & RAG Architectures",
+      "tag": "Generative Systems",
+      "description": "Architecting reliable, context-aware retrieval-augmented generation pipelines that ground model responses in verified domain knowledge while mitigating hallucinations."
     },
     {
-      "icon": "🤖",
-      "text": "LLMs & Generative AI"
+      "id": "pillar-2",
+      "title": "Deep Learning & Vision Research",
+      "tag": "Explainable AI (XAI)",
+      "description": "Designing multi-headed CNNs, Vision Transformers (ViTs), and Grad-CAM interpretability layers that provide transparent, visual decision rationales for mission-critical diagnostics."
     },
     {
-      "icon": "🎯",
-      "text": "End-to-End AI Systems"
+      "id": "pillar-3",
+      "title": "Precision Edge-AI Systems",
+      "tag": "Model Optimization",
+      "description": "Engineering lightweight neural networks with over 30% parameter reduction, optimized for low-latency inference on agricultural and healthcare edge sensors."
     },
     {
-      "icon": "📈",
-      "text": "Full-Stack Engineering"
-    },
-    {
-      "icon": "🔬",
-      "text": "Research-Driven Solutions"
+      "id": "pillar-4",
+      "title": "Full-Stack ML Engineering",
+      "tag": "Production Systems",
+      "description": "Transforming algorithmic research into production-grade, interactive web applications using Next.js, FastAPI, Streamlit, and cloud microservices."
     }
   ],
   "timeline": [
     {
       "year": "2023 – Present",
-      "icon": "🎓",
-      "title": "B.Tech CSE (AI & ML) — Undergraduate",
-      "description": "Pursuing undergraduate studies with specialization in Artificial Intelligence and Machine Learning, focusing on deep learning, neural networks, computer vision, NLP, generative AI, and advanced software engineering practices."
+      "title": "B.Tech CSE (AI & ML) — The Neotia University",
+      "description": "Commenced undergraduate studies focusing on core computer science foundations, mathematics for machine learning, data structures, and neural network architectures (Current CGPA: 9.54)."
     },
     {
       "year": "2024 – Present",
-      "icon": "🔬",
-      "title": "AI Research & Advanced Projects",
-      "description": "Actively working on research-driven projects in ECG signal processing, respiratory sound analysis, computer vision, generative AI pipelines, and large-scale deep learning systems."
+      "title": "Empirical AI Research & Conference Publications",
+      "titleSecondary": "IEEE & Springer Co-Author",
+      "description": "Authored and published 4 peer-reviewed papers across IEEE ICRITO, IEEE COMPUTINGCON, and Springer LNNS, developing multi-task crop and fruit grading models."
     },
     {
       "year": "2025 – Present",
-      "icon": "🚀",
-      "title": "Production-Grade AI & Full-Stack",
-      "description": "Designing and building scalable AI-powered web platforms using React, FastAPI, cloud services, and optimized deployment pipelines, emphasizing performance and real-world impact."
+      "title": "Production-Grade AI Platforms & Hackathons",
+      "titleSecondary": "Smart India Hackathon & Industry Internships",
+      "description": "Selected for SIH 2024 (1st round), completed engineering internships at Xeta Labs and DataSpace Academy, deploying scalable web applications and AI APIs."
     }
   ],
-  "mission": "To engineer intelligent systems that bridge academic research and real-world deployment, delivering scalable, efficient, and impactful AI-driven solutions.",
+  "mission": "To engineer interpretable, high-accuracy intelligent systems that seamlessly transition from academic research into robust real-world production environments.",
   "values": [
-    "💡 Innovation",
-    "📚 Research Excellence",
-    "⚡ System Scalability",
-    "🏗️ Clean Architecture",
-    "🎓 Continuous Learning"
+    "Empirical Research Rigor",
+    "Grounded AI & Reliability",
+    "Interpretability & XAI",
+    "Clean Software Architecture",
+    "Continuous Intellectual Curiosity"
   ]
 }
