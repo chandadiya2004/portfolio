@@ -84,7 +84,7 @@ export const Hero = () => {
               </a>
 
               <a
-                href={heroData.resumeUrl || '/resume.pdf'}
+                href={heroData.resumeUrl || '/Diya_Chanda_Resume.pdf'}
                 target="_blank"
                 rel="noopener noreferrer"
                 download="Diya_Chanda_Resume.pdf"

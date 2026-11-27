@@ -180,10 +180,9 @@ export const Navbar = () => {
         <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
           {/* Quick Curriculum Vitae Link */}
           <a
-            href="/resume.pdf"
+            href="/Diya_Chanda_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            download="Diya_Chanda_Resume.pdf"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-hairline hover:border-terracotta bg-surface dark:bg-card text-text-main hover:text-terracotta text-xs font-mono font-medium transition-colors group"
           >
             <span>CV</span>
@@ -212,10 +211,9 @@ export const Navbar = () => {
         {/* Mobile & Tablet Actions Cluster (< 1024px) */}
         <div className="flex items-center gap-2 lg:hidden flex-shrink-0">
           <a
-            href="/resume.pdf"
+            href="/Diya_Chanda_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            download="Diya_Chanda_Resume.pdf"
             className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-hairline bg-surface dark:bg-card text-text-main text-xs font-mono font-medium"
           >
             <span>CV</span>
@@ -287,7 +285,7 @@ export const Navbar = () => {
 
           <div className="pt-5 mt-4 border-t border-hairline">
             <a
-              href="/resume.pdf"
+              href="/Diya_Chanda_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download="Diya_Chanda_Resume.pdf"
